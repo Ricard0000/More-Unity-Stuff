@@ -129,9 +129,9 @@ public class GrandWallType1 : MonoBehaviour
         triangles = new int[12 * N+1000];
         uvs = new Vector2[3 * (2 * N + 1)];
         */
-        vertices = new Vector3[18*(2 * N + 1)];
-        triangles = new int[3*(2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1)];
-        uvs = new Vector2[18*(2 * N + 1)];
+        vertices = new Vector3[19*(2 * N + 1)];
+        triangles = new int[3*(2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1) + 3 * (2 * N + 1)];
+        uvs = new Vector2[19*(2 * N + 1)];
 
 
         float angle1 = -45f / 180f * PI;
@@ -286,10 +286,18 @@ public class GrandWallType1 : MonoBehaviour
         for (int i = 0; i < 2 * N + 1; i++)
         {
             x = 0.6625f * c1 * Mathf.Cos(PI - i * delta_theta);
-            z = 0.0f - dz - dz - dz - dz - dz * 0.3333333f - dz*2f;
+            z = 0.0f - dz - dz - dz - dz - dz * 0.3333333f - dz*2.5f;
             vertices[i + itsize1] = Arch_eq_6_A(x, z, 0.6625f * c1, 0.6625f * c2, angle) + POS;
         }
 
+
+        itsize1 = 2 * N + 1 + itsize1;
+        for (int i = 0; i < 2 * N + 1; i++)
+        {
+            x = 0.7f * c1 * Mathf.Cos(PI - i * delta_theta);
+            z = 0.0f - dz - dz - dz - dz - dz * 0.3333333f - dz * 2.5f;
+            vertices[i + itsize1] = Arch_eq_6_A(x, z, 0.7f * c1, 0.7f * c2, angle) + POS;
+        }
 
 
         // First Top arch part (Right Side)
@@ -603,11 +611,40 @@ public class GrandWallType1 : MonoBehaviour
 
 
 
+
+
+
+
+
+
+
+
+
+        skip = 3 * (2 * N) + skip;
+        for (int i = 0; i < 2 * N + 0; i++)
+        {
+            int i3 = 3 * i;
+            triangles[i3 + skip] = 34 * N + i + 18;
+            triangles[i3 + 1 + skip] = 34 * N + i + 17;
+            triangles[i3 + 2 + skip] = 36 * N + i + 18;
+        }
+
+        skip = 3 * (2 * N) + skip;
+        for (int i = 0; i < 2 * N + 0; i++)
+        {
+            int i3 = 3 * i;
+            triangles[i3 + skip] = 34 * N + i + 18;
+            triangles[i3 + 1 + skip] = 36 * N + i + 18;
+            triangles[i3 + 2 + skip] = 36 * N + i + 19;
+        }
+
+
+
         float Length = dz + .1f * c1 + dz + Mathf.Sqrt(Mathf.Pow(dz * 0.33333f, 2) + Mathf.Pow(0.03f * c1, 2)) + Mathf.Sqrt(Mathf.Pow(dz * 0.66666f, 2) + Mathf.Pow(0.0075f * c1, 2))
             + 0.0125f* c1 + Mathf.Sqrt(Mathf.Pow(dz * 0.33333f, 2) + Mathf.Pow(0.0125f * c1, 2)) + Mathf.Sqrt(Mathf.Pow(dz * 0.66666f, 2) + Mathf.Pow(0.0325f * c1, 2))
             + 0.5f* dz + Mathf.Sqrt(Mathf.Pow(dz * 0.25f, 2) + Mathf.Pow(0.025f * c1, 2)) + Mathf.Sqrt(Mathf.Pow(dz * 0.583333f, 2) + Mathf.Pow(0.025f * c1, 2))
             + 0.05f*c1 + Mathf.Sqrt(Mathf.Pow(dz * 0.33333f, 2) + Mathf.Pow(0.0125f * c1, 2)) + 0.0125f* c1 + Mathf.Sqrt(Mathf.Pow(dz * 0.33333f, 2) + Mathf.Pow(0.0125f * c1, 2))
-            + 0.025f*c1 + 2f*dz;
+            + 0.025f*c1 + 2.5f * dz + 0.0375f * c1;
 
         
         for (int i = 0; i < 2 * N + 1; i++)
@@ -772,8 +809,21 @@ public class GrandWallType1 : MonoBehaviour
         {
             //            x = (Mathf.Cos(PI - (float)i * delta_theta) + 1f) * 0.5f;
             x = (float)i / (2 * N + 1);
-            uvs[i + uvskip] = new Vector2(x, 1f);
+            uvs[i + uvskip] = new Vector2(x, (dz + dz + .1f * c1 + Mathf.Sqrt(Mathf.Pow(dz * 0.33333f, 2) + Mathf.Pow(0.03f * c1, 2)) + Mathf.Sqrt(Mathf.Pow(dz * 0.66666f, 2) + Mathf.Pow(0.0075f * c1, 2))
+              + 0.0125f * c1 + Mathf.Sqrt(Mathf.Pow(dz * 0.33333f, 2) + Mathf.Pow(0.0125f * c1, 2)) + Mathf.Sqrt(Mathf.Pow(dz * 0.66666f, 2) + Mathf.Pow(0.0325f * c1, 2))
+              + 0.5f * dz + Mathf.Sqrt(Mathf.Pow(dz * 0.25f, 2) + Mathf.Pow(0.025f * c1, 2)) + Mathf.Sqrt(Mathf.Pow(dz * 0.583333f, 2) + Mathf.Pow(0.025f * c1, 2))
+              + 0.05f * c1 + Mathf.Sqrt(Mathf.Pow(dz * 0.33333f, 2) + Mathf.Pow(0.0125f * c1, 2)) + 0.0125f * c1 + Mathf.Sqrt(Mathf.Pow(dz * 0.33333f, 2) + Mathf.Pow(0.0125f * c1, 2))
+              + 0.025f * c1 + 2.5f * dz) / Length);
         }
+
+        uvskip = 2 * N + 1 + uvskip;
+        for (int i = 0; i < 2 * N + 1; i++)
+        {
+            //            x = (Mathf.Cos(PI - (float)i * delta_theta) + 1f) * 0.5f;
+            x = (float)i / (2 * N + 1);
+            uvs[i + uvskip] = new Vector2(x,1f);
+        }
+
 
 
         m.vertices = vertices;
