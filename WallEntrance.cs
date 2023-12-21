@@ -129,9 +129,9 @@ public class WallEntrance : MonoBehaviour
         triangles = new int[12 * N+1000];
         uvs = new Vector2[3 * (2 * N + 1)];
         */
-        vertices = new Vector3[(2 * N + 1) + 20];
-        triangles = new int[3 * (2 * N - 6 ) + 3 + 30];
-        uvs = new Vector2[(2 * N + 1) + 20];
+        vertices = new Vector3[(2 * N + 1) + 26];
+        triangles = new int[3 * (2 * N - 6 ) + 3 + 30 + 9 + 15];
+        uvs = new Vector2[(2 * N + 1) + 26];
 
 
         float angle1 = -45f / 180f * PI;
@@ -166,11 +166,51 @@ public class WallEntrance : MonoBehaviour
         {
             x = 0.175f * c1 * Mathf.Cos(PI - i * delta_theta * 2 * N * 1f /8.00000f);
             z = -dz * 4.3333333f - dz * 2.5f;
-            vertices[i + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f, -aFloat + c2*0.525f, -8f * dz);
+            vertices[i + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f, -aFloat + c2*0.525f, -8f * dz);//Equation of small arch.
         }
         temp = vertices[nextVert];
         temp2 = vertices[nextVert + 4];
-        vertices[9 + nextVert] = new Vector3(-0.525f, temp[1], temp2[2]);
+        Vector3 temp3 = vertices[nextVert + 8];
+
+        vertices[9 + nextVert] = vertices[0];
+
+        nextVert = 10 + nextVert;
+        for (int i = 0; i < 5; i++)
+        {
+            x = 0.7f * c1 * Mathf.Cos(PI - (i) * delta_theta);
+            z = -dz * 4.3333333f - dz * 2.5f;
+            vertices[i + nextVert] = Arch_eq_6_A(x, z, 0.7f * c1, 0.7f * c2, angle) + POS + new Vector3(0f, 0f, -8f * dz);
+        }
+
+        nextVert = 5 + nextVert;
+        x = 0.175f * c1 * Mathf.Cos(PI - 0 * delta_theta * 2 * N * 1f / 8.00000f);
+        z = -dz * 4.3333333f - dz * 2.5f;
+        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz);//This is 2N+9
+
+        nextVert = 1 + nextVert;
+        x = 0.175f * c1 * Mathf.Cos(PI - 0 * delta_theta * 2 * N * 1f / 8.00000f);
+        z = -dz * 4.3333333f - dz * 2.5f;
+        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f-0.125f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz);//This is 2N+10
+
+
+//        nextVert = 1 + nextVert;
+        /*
+        for (int i = 0; i < 5; i++)
+        {
+            x = 0.7f * c1 * Mathf.Cos(PI - (i+5) * delta_theta);
+            z = -dz * 4.3333333f - dz * 2.5f;
+            vertices[i + nextVert] = Arch_eq_6_A(x, z, 0.7f * c1, 0.7f * c2, angle) + POS + new Vector3(0f, 0f, -8f * dz);//Equation of small arch.//Vert 2N+11 to 2N+15
+        }
+*/
+        nextVert = 1 + nextVert;
+        vertices[nextVert] = temp3 + POS + new Vector3(0f, .25975f, 0f);//Equation of small arch.//Vert 2N+11
+
+
+
+
+
+
+        //        vertices[9 + nextVert] = new Vector3(-0.525f, temp[1], temp2[2]);
 
         // First Top arch part (Right Side)
         for (int i = 0; i < 2 * N - 6; i++)
@@ -180,13 +220,62 @@ public class WallEntrance : MonoBehaviour
             triangles[i3 + 1] = 2 * N - 7;
             triangles[i3 + 2] = i + 1;
         }
+
+
         int nextTri = 3 * (2 * N - 6);
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 4; i++)
         {
             int i3 = 3 * i;
-            triangles[i3 + nextTri] = i + 0 + 2 * N - 6;
+            triangles[i3 + nextTri] = i + 1 + 2 * N - 6;
             triangles[i3 + 1 + nextTri] = 2 * N - 6  + 9;
-            triangles[i3 + 2 + nextTri] = i + 1 + 2 * N - 6;
+            triangles[i3 + 2 + nextTri] = i + 0 + 2 * N - 6;
+        }
+
+        nextTri = 3 * 4 + nextTri;
+
+        triangles[nextTri] = 0 + 0 + 2 * N - 6;
+        triangles[1 + nextTri] = 1 + 2 * N + 7;
+        triangles[2 + nextTri] =  0 + 2 * N + 7;
+
+
+        nextTri = 3 * 1 + nextTri;
+        triangles[nextTri] = 0 + 0 + 2 * N - 6;
+        triangles[1 + nextTri] = 1 + 2 * N + 6;
+        triangles[2 + nextTri] = 0 + 2 * N + 6;
+
+        nextTri = 3 * 1 + nextTri;
+        triangles[nextTri] = 0 + 0 + 2 * N - 6;
+        triangles[1 + nextTri] = 1 + 2 * N + 5;
+        triangles[2 + nextTri] = 0 + 2 * N + 5;
+
+        nextTri = 3 * 1 + nextTri;
+        triangles[nextTri] = 0 + 0 + 2 * N - 6;
+        triangles[1 + nextTri] = 1 + 2 * N + 4;
+        triangles[2 + nextTri] = 0 + 2 * N + 4;
+
+
+        nextTri = 3 * 1 + nextTri;
+        triangles[nextTri] = 0 + 0 + 2 * N + 9;
+        triangles[1 + nextTri] = 0 + 2 * N - 6;
+        triangles[2 + nextTri] = 0 + 2 * N + 5;
+
+        nextTri = 3 * 1 + nextTri;
+        triangles[nextTri] = 0 + 0 + 2 * N + 9;
+        triangles[1 + nextTri] = 0 + 2 * N + 5;
+        triangles[2 + nextTri] = 0 + 2 * N + 4;
+
+        nextTri = 3 * 1 + nextTri;
+        triangles[nextTri] = 0 + 0 + 2 * N + 4;
+        triangles[1 + nextTri] = 0 + 2 * N + 10;
+        triangles[2 + nextTri] = 0 + 2 * N + 9;
+
+        nextTri = 3 * 1 + nextTri;
+        for (int i = 0; i < 4; i++)
+        {
+            int i3 = 3 * i;
+            triangles[i3 + nextTri] = i + 1 + 2 * N - 2;
+            triangles[i3 + 1 + nextTri] = 2 * N + 11;
+            triangles[i3 + 2 + nextTri] = i + 0 + 2 * N - 2;
         }
 
 
