@@ -148,6 +148,7 @@ public class WallEntrance : MonoBehaviour
             x = 0.7f * c1 * Mathf.Cos(PI - (i + 4f) * delta_theta);
             z = - dz * 4.3333333f - dz * 2.5f;
             vertices[i] = Arch_eq_6_A(x, z, 0.7f * c1, 0.7f * c2, angle) + POS + new Vector3(0f, 0f, -8f*dz);
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].y);
         }
         Vector3 temp;
         temp = vertices[0];
@@ -159,6 +160,7 @@ public class WallEntrance : MonoBehaviour
 
 
         vertices[2 * N - 7] = new Vector3(0f, temp[1], temp[2]) + POS;
+        uvs[2 * N - 7] = new Vector2(vertices[2 * N - 7].x, vertices[2 * N - 7].y);
 
         int nextVert = 2 * N - 6;
 
@@ -167,12 +169,14 @@ public class WallEntrance : MonoBehaviour
             x = 0.175f * c1 * Mathf.Cos(PI - i * delta_theta * 2 * N * 1f /8.00000f);
             z = -dz * 4.3333333f - dz * 2.5f;
             vertices[i + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f, -aFloat + c2*0.525f, -8f * dz);//Equation of small arch.
+            uvs[i + nextVert] = new Vector2(vertices[i + nextVert].x, vertices[i + nextVert].y);
         }
         temp = vertices[nextVert];
         temp2 = vertices[nextVert + 4];
         Vector3 temp3 = vertices[nextVert + 8];
 
         vertices[9 + nextVert] = vertices[0];
+        uvs[9 + nextVert] = new Vector2(vertices[9 + nextVert].x, vertices[9 + nextVert].y);
 
         nextVert = 10 + nextVert;
         for (int i = 0; i < 5; i++)
@@ -180,20 +184,22 @@ public class WallEntrance : MonoBehaviour
             x = 0.7f * c1 * Mathf.Cos(PI - (i) * delta_theta);
             z = -dz * 4.3333333f - dz * 2.5f;
             vertices[i + nextVert] = Arch_eq_6_A(x, z, 0.7f * c1, 0.7f * c2, angle) + POS + new Vector3(0f, 0f, -8f * dz);
+            uvs[i + nextVert] = new Vector2(vertices[i + nextVert].x, vertices[i + nextVert].y);
         }
 
         nextVert = 5 + nextVert;
         x = 0.175f * c1 * Mathf.Cos(PI - 0 * delta_theta * 2 * N * 1f / 8.00000f);
         z = -dz * 4.3333333f - dz * 2.5f;
         vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz);//This is 2N+9
+        uvs[0 + nextVert] = new Vector2(vertices[0 + nextVert].x, vertices[0 + nextVert].y);
 
         nextVert = 1 + nextVert;
         x = 0.175f * c1 * Mathf.Cos(PI - 0 * delta_theta * 2 * N * 1f / 8.00000f);
         z = -dz * 4.3333333f - dz * 2.5f;
         vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f-0.125f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz);//This is 2N+10
+        uvs[0 + nextVert] = new Vector2(vertices[0 + nextVert].x, vertices[0 + nextVert].y);
 
-
-//        nextVert = 1 + nextVert;
+        //        nextVert = 1 + nextVert;
         /*
         for (int i = 0; i < 5; i++)
         {
@@ -204,10 +210,23 @@ public class WallEntrance : MonoBehaviour
 */
         nextVert = 1 + nextVert;
         vertices[nextVert] = temp3 + POS + new Vector3(0f, .25975f, 0f);//Equation of small arch.//Vert 2N+11
+        uvs[nextVert] = new Vector2(vertices[nextVert].x, vertices[nextVert].y);
 
+        nextVert = 1 + nextVert;
+        vertices[nextVert] = temp3 + POS + new Vector3(0.0625f, .25975f, 0f);//Equation of small arch.//Vert 2N+12
+        uvs[nextVert] = new Vector2(vertices[nextVert].x, vertices[nextVert].y);
 
+        nextVert =  1 + nextVert;
+        x = 0.175f * c1 * Mathf.Cos(0 * delta_theta * 2 * N * 1f / 8.00000f);
+        z = -dz * 4.3333333f - dz * 2.5f;
+        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz);//This is 2N+ 13
+        uvs[0 + nextVert] = new Vector2(vertices[0 + nextVert].x, vertices[0 + nextVert].y);
 
-
+        nextVert = 1 + nextVert;
+        x = 0.175f * c1 * Mathf.Cos(0 * delta_theta * 2 * N * 1f / 8.00000f);
+        z = -dz * 4.3333333f - dz * 2.5f;
+        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f + 0.0625f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz);//This is 2N+ 14
+        uvs[0 + nextVert] = new Vector2(vertices[0 + nextVert].x, vertices[0 + nextVert].y);
 
 
         //        vertices[9 + nextVert] = new Vector3(-0.525f, temp[1], temp2[2]);
@@ -278,6 +297,15 @@ public class WallEntrance : MonoBehaviour
             triangles[i3 + 2 + nextTri] = i + 0 + 2 * N - 2;
         }
 
+        nextTri = 3 * 4 + nextTri;
+        triangles[nextTri] = 0 + 2 * N + 11;
+        triangles[1 + nextTri] = 0 + 2 * N + 13;
+        triangles[2 + nextTri] = 0 + 2 * N + 12;
+
+        nextTri = 3 + nextTri;
+        triangles[nextTri] = 0 + 2 * N + 12;
+        triangles[1 + nextTri] = 0 + 2 * N + 13;
+        triangles[2 + nextTri] = 0 + 2 * N + 14;
 
 
         m.vertices = vertices;
