@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.Text;
+using System.Linq;
+
 
 public class OutterWall : MonoBehaviour
 {
@@ -26,11 +30,59 @@ public class OutterWall : MonoBehaviour
     public int rot = 0;
 
     public Material mat;
+    string fileName = "MyFile.txt";
+
+    /*
+    [SerializeField] private TMP_InputField txtInput;
+    private string appendFile;
+    private string overwriteFile;
+    */
 
     GameObject gog;// = new GameObject("Plane");
     void Awake()
     {
         gog = MakeDiscreteProceduralGrid(Pos1, Pos2, Pos3, c1, c2, c3, c4, s, t, delta_theta, N, true, mat, rot);
+    }
+
+
+
+    public void Start()
+    {
+        if (File.Exists(fileName))
+        {
+            Debug.Log(fileName + " already exists.");
+            return;
+        }
+        var sr = File.CreateText(fileName);
+        sr.WriteLine("This is my file.");
+        sr.WriteLine("I can write ints {0} or floats {1}, and so on.",
+            1, 4.2);
+        sr.Close();
+
+    }
+/*
+    void Start()
+    {
+        WriteToFile();
+    }
+*/
+    public static void WriteToFile()
+    {
+        StreamWriter sw = new StreamWriter(Application.persistentDataPath + "table.txt");
+        sw.WriteLine("Generated table of 1 to 10");
+        sw.WriteLine("");
+
+        for (int i = 1; i <= 10; i++)
+        {
+            for (int j = 1; j <= 10; j++)
+            {
+                sw.WriteLine("{0}x{1}= {2}", i, j, (i * j));
+            }
+
+            sw.WriteLine("====================================");
+        }
+        sw.WriteLine("Table successfully written to file!");
+        sw.Close();
     }
 
 
@@ -200,11 +252,35 @@ public class OutterWall : MonoBehaviour
 
 
         float L = sideLengthFromBottom * 2f + 2f * c1;
+        float LVert = 10f * dz + c2;
 
         uvs[0] = new Vector2(sideLengthFromBottom / L, 1f);
         uvs[1] = new Vector2(sideLengthFromBottom / L, 0f);
         uvs[2] = new Vector2(0f, 1f);
         uvs[3] = new Vector2(0f, 0f);
+
+        int uvSkip = 4;
+        for(int i = 0; i < N + 1; i++)
+        {
+            x = Mathf.Cos(PI - i * delta_theta);
+            Vector2 Temp;
+            Temp = Arch_eq_6_uv(x, 1f, c2, 0f);
+            uvs[i + uvSkip] = new Vector2(1.25f*Temp[0] / L + 0.5f, (Temp[1] + 10f * dz) / LVert);
+        }
+        uvSkip = uvSkip + N + 1;
+        for (int i = 0; i < N; i++)
+        {
+            x = Mathf.Cos(PI * 0.5f - i * delta_theta);
+            Vector2 Temp;
+            Temp = Arch_eq_6_uv(x, 1f, c2, 0f);
+            uvs[i + uvSkip] = new Vector2(1.25f * Temp[0] / L + 0.5f, (Temp[1] + 10f * dz) / LVert);
+        }
+
+        uvSkip = uvSkip + N + 1;
+        uvs[0 + uvSkip] = new Vector2((L-sideLengthFromBottom) / L, 1f);
+        uvs[1 + uvSkip] = new Vector2((L - sideLengthFromBottom) / L, 0f);
+        uvs[2 + uvSkip] = new Vector2(1f, 1f);
+        uvs[3 + uvSkip] = new Vector2(1f, 0f);
 
         /*
         skip = skip + 4;

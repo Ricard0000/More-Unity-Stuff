@@ -83,6 +83,7 @@ public class TopStairs : MonoBehaviour
             x = (0.6625f + dz) * c1 * Mathf.Cos((PI * f + (PI - PI * f) * 0.5f - i * delta_theta * f));
             y = -4f * dz;
             vertices[i] = Stair_eq(x, y, (0.6625f + dz) * c1, (0.6625f + dz) * c1) + POS + new Vector3(0f, -dz * 0.5f, -4.33333f * dz - 9f * dz + moveForward);
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
         }
         
         int skip = N;
@@ -90,23 +91,7 @@ public class TopStairs : MonoBehaviour
         temp = new Vector3(0f, -4f * dz, 1.75f * c1 / 6f);
 
         vertices[skip + 0] =  temp + POS + new Vector3(0f, -dz * 0.5f, -4.33333f * dz - 9f * dz + moveForward);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        uvs[skip + 0] = new Vector2(vertices[skip + 0].x, vertices[skip + 0].z);
 
         for (int i = 0; i < N - 1; i++)
         {

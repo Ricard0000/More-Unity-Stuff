@@ -190,13 +190,13 @@ public class WallEntrance : MonoBehaviour
         nextVert = 5 + nextVert;
         x = 0.175f * c1 * Mathf.Cos(PI - 0 * delta_theta * 2 * N * 1f / 8.00000f);
         z = -dz * 4.3333333f - dz * 2.5f;
-        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz);//This is 2N+9
+        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz) + new Vector3(0f, -.060f, 0f);//This is 2N+9. This controls the bottom
         uvs[0 + nextVert] = new Vector2(vertices[0 + nextVert].x, vertices[0 + nextVert].y);
 
         nextVert = 1 + nextVert;
         x = 0.175f * c1 * Mathf.Cos(PI - 0 * delta_theta * 2 * N * 1f / 8.00000f);
         z = -dz * 4.3333333f - dz * 2.5f;
-        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f-0.125f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz);//This is 2N+10
+        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f-0.125f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz) + new Vector3(0f, -.060f, 0f);//This is 2N+10. This controls the bottom.
         uvs[0 + nextVert] = new Vector2(vertices[0 + nextVert].x, vertices[0 + nextVert].y);
 
         //        nextVert = 1 + nextVert;
@@ -219,13 +219,13 @@ public class WallEntrance : MonoBehaviour
         nextVert =  1 + nextVert;
         x = 0.175f * c1 * Mathf.Cos(0 * delta_theta * 2 * N * 1f / 8.00000f);
         z = -dz * 4.3333333f - dz * 2.5f;
-        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz);//This is 2N+ 13
+        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz) + new Vector3(0f, -.060f, 0f);//This is 2N+ 13. This controls the bottom.
         uvs[0 + nextVert] = new Vector2(vertices[0 + nextVert].x, vertices[0 + nextVert].y);
 
         nextVert = 1 + nextVert;
         x = 0.175f * c1 * Mathf.Cos(0 * delta_theta * 2 * N * 1f / 8.00000f);
         z = -dz * 4.3333333f - dz * 2.5f;
-        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f + 0.0625f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz);//This is 2N+ 14
+        vertices[0 + nextVert] = Arch_eq_6_A(x, z, 0.175f * c1, 0.175f * c2, angle) + POS + new Vector3(-0.525f + 0.0625f, -aFloat + c2 * 0.525f - 0.5f, -8f * dz) + new Vector3(0f, -.060f, 0f);//This is 2N+ 14
         uvs[0 + nextVert] = new Vector2(vertices[0 + nextVert].x, vertices[0 + nextVert].y);
 
 
