@@ -68,68 +68,131 @@ public class HandRailStoneWall4 : MonoBehaviour
 
         //N=number of splits per quarter.
 
-        vertices = new Vector3[4 + N + 1 + 3 + 1 + 2 + 4];// + 2]; /* 2 + 2 * N1*/
-        triangles = new int[3 * 2 + 3 * N + 3 + 3 + 6 + 6 + 6 * N1 + 6];
-        uvs = new Vector2[4 + N + 1 + 3 + 1 + 2 + 4];// + 2]; /* 2 + 2 * N1*/
+        vertices = new Vector3[30];
+        triangles = new int[6 + 6 * N + 18];
+        uvs = new Vector2[30];
 
         Vector3 POS = new Vector3(Pos1, Pos2, Pos3);
-
+        Vector3 newPosition = new Vector3(-0.0625f, 0f, 0f);
 
         float moveX = -0.04375f;
         float addLength = -0.0625f * 0.5f;
 
-        vertices[0] = new Vector3(0f, 0f, 0f) + POS + new Vector3(moveX,0f,0f) + new Vector3(addLength, 0f, 0f);
+        vertices[0] = new Vector3(0f, 0f, 0f) + POS + new Vector3(moveX,0f,0f) + new Vector3(addLength, 0f, 0f) + newPosition;
         uvs[0] = new Vector2(vertices[0].y, vertices[0].z);
 
-        vertices[1] = new Vector3(0f, 0.325f, 0f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f);
+        vertices[1] = new Vector3(0f, 0.325f, 0f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f) + newPosition;
         uvs[1] = new Vector2(vertices[1].y, vertices[1].z);
 
-        vertices[2] = new Vector3(0f, 0f, 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f);
+        vertices[2] = new Vector3(0f, 0f, 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f) + newPosition;
         uvs[2] = new Vector2(vertices[2].y, vertices[2].z);
 
-        vertices[3] = new Vector3(0f, 0.325f, 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f);
+        vertices[3] = new Vector3(0f, 0.325f, 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f) + newPosition;
         uvs[3] = new Vector2(vertices[3].y, vertices[3].z);
 
+        int nextVert = 4;
+
+        vertices[4] = new Vector3(.045f, 0.04312501f, -.8025f);
+        vertices[4] = vertices[4] + new Vector3(((float)0 / (4 * N)) * ((float)0 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[4] = new Vector2(vertices[4].y, vertices[4].z);
+
+        vertices[5] = new Vector3(.045f, -0.00554846f, -0.78826531f);
+        vertices[5] = vertices[5] + new Vector3(((float)1 / (4 * N)) * ((float)1 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[5] = new Vector2(vertices[5].y, vertices[5].z);
+
+        vertices[6] = new Vector3(.045f, -0.04692602f, -0.76984694f);
+        vertices[6] = vertices[6] + new Vector3(((float)2 / (4 * N)) * ((float)2 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[6] = new Vector2(vertices[6].y, vertices[6].z);
+
+        vertices[7] = new Vector3(.045f, -0.08100765f, -0.7472449f);
+        vertices[7] = vertices[7] + new Vector3(((float)3 / (4 * N)) * ((float)3 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[7] = new Vector2(vertices[7].y, vertices[7].z);
+
+        vertices[8] = new Vector3(.045f, -0.10779337f, -0.72045918f);
+        vertices[8] = vertices[8] + new Vector3(((float)4 / (4 * N)) * ((float)4 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[8] = new Vector2(vertices[8].y, vertices[8].z);
+
+        vertices[9] = new Vector3(.045f, -0.12728316f, -0.6894898f);
+        vertices[9] = vertices[9] + new Vector3(((float)5 / (4 * N)) * ((float)5 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[9] = new Vector2(vertices[9].y, vertices[9].z);
+
+        vertices[10] = new Vector3(.045f, -0.13947704f, -0.65433673f);
+        vertices[10] = vertices[10] + new Vector3(((float)6 / (4 * N)) * ((float)6 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[10] = new Vector2(vertices[10].y, vertices[10].z);
+
+        vertices[11] = new Vector3(.045f, -0.144375f, -0.615f);
+        vertices[11] = vertices[11] + new Vector3(((float)7 / (4 * N)) * ((float)7 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[11] = new Vector2(vertices[11].y, vertices[11].z);
+
+
+
+
+        vertices[12] = new Vector3(.045f, Pos2, -.8025f);
+        vertices[12] = vertices[12] + new Vector3(((float)0 / (4 * N)) * ((float)0 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[12] = new Vector2(vertices[12].y, vertices[12].z);
+
+        vertices[13] = new Vector3(.045f, Pos2, -0.78826531f);
+        vertices[13] = vertices[13] + new Vector3(((float)1 / (4 * N)) * ((float)1 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[13] = new Vector2(vertices[13].y, vertices[13].z);
+
+        vertices[14] = new Vector3(.045f, Pos2, -0.76984694f);
+        vertices[14] = vertices[14] + new Vector3(((float)2 / (4 * N)) * ((float)2 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[14] = new Vector2(vertices[14].y, vertices[14].z);
+
+        vertices[15] = new Vector3(.045f, Pos2, -0.7472449f);
+        vertices[15] = vertices[15] + new Vector3(((float)3 / (4 * N)) * ((float)3 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[15] = new Vector2(vertices[15].y, vertices[15].z);
+
+        vertices[16] = new Vector3(.045f, Pos2, -0.72045918f);
+        vertices[16] = vertices[16] + new Vector3(((float)4 / (4 * N)) * ((float)4 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[16] = new Vector2(vertices[16].y, vertices[16].z);
+
+        vertices[17] = new Vector3(.045f, Pos2, -0.6894898f);
+        vertices[17] = vertices[17] + new Vector3(((float)5 / (4 * N)) * ((float)5 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[17] = new Vector2(vertices[17].y, vertices[17].z);
+
+        vertices[18] = new Vector3(.045f, Pos2, -0.65433673f);
+        vertices[18] = vertices[18] + new Vector3(((float)6 / (4 * N)) * ((float)6 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[18] = new Vector2(vertices[18].y, vertices[18].z);
+
+        vertices[19] = new Vector3(.045f, Pos2, -0.615f);
+        vertices[19] = vertices[19] + new Vector3(((float)7 / (4 * N)) * ((float)7 / (4 * N)), 0f, 0f) + newPosition;
+        uvs[19] = new Vector2(vertices[19].y, vertices[19].z);
 
         float r = 0.1875f;
-        for (int i = 0; i < N; i++)
-        {
-            vertices[4 + i] = new Vector3(0f, 0.325f, r + 0.125f) + POS + new Vector3(0f, -r * Mathf.Cos(-PI / 2 + PI / 2 * (i) / (N - 1)), r * Mathf.Sin(-PI / 2 + PI / 2 * (i) / (N - 1))) + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f);
-            uvs[4 + i] = new Vector2(vertices[4 + i].y, vertices[4 + i].z);
-        }
-
-        int nextVert = 4 + N;
-
-        vertices[nextVert] = new Vector3(0f, 0.325f - r, 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f);
-        uvs[nextVert] = new Vector2(vertices[nextVert].y, vertices[nextVert].z);
-
-        vertices[nextVert + 1] = new Vector3(0f, 0.325f - r, r + 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f);
-        uvs[nextVert + 1] = new Vector2(vertices[nextVert + 1].y, vertices[nextVert + 1].z);
-
-        vertices[nextVert + 2] = new Vector3(0f, 0f, r + 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f);
-        uvs[nextVert + 2] = new Vector2(vertices[nextVert + 2].y, vertices[nextVert + 2].z);
-
-        vertices[nextVert + 3] = new Vector3(0f, 0.325f - r, 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f);
-        uvs[nextVert + 3] = new Vector2(vertices[nextVert + 3].y, vertices[nextVert + 3].z);
-
-        vertices[nextVert + 4] = new Vector3(0f, 0f, 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f);
-        uvs[nextVert + 4] = new Vector2(vertices[nextVert + 4].y, vertices[nextVert + 4].z);
-
         float r1 = 0.0375f;
-
         float moveZ = 0.11875f;
+        vertices[20] = new Vector3(0f, 0.325f - r, r + 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f) + new Vector3(0.04785156f, 0f, 0f) + newPosition;
+        uvs[20] = new Vector2(vertices[20].y, vertices[20].z);
 
-        vertices[nextVert + 5] = new Vector3(0f, 0f, 0f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(0f,0f, r + moveZ) + new Vector3(addLength, 0f, 0f);
-        uvs[nextVert + 5] = new Vector2(vertices[nextVert + 5].y, vertices[nextVert + 5].z);
+        vertices[21] = new Vector3(0f, 0.325f - r, 0.125f - r1 * 2) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(0f, 0f, r + moveZ) + new Vector3(addLength, 0f, 0f) + new Vector3(0.065f, 0f, 0f) + newPosition;
+        uvs[21] = new Vector2(vertices[21].y, vertices[21].z);
 
-        vertices[nextVert + 6] = new Vector3(0f, 0.325f - r, 0f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(0f, 0f, r + moveZ) + new Vector3(addLength, 0f, 0f);
-        uvs[nextVert + 6] = new Vector2(vertices[nextVert + 6].y, vertices[nextVert + 6].z);
+        vertices[22] = new Vector3(0f, 0f, r + 0.125f) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(addLength, 0f, 0f) + new Vector3(0.04785156f, 0f, 0f) + newPosition;
+        uvs[22] = new Vector2(vertices[22].y, vertices[22].z);
 
-        vertices[nextVert + 7] = new Vector3(0f, 0f, 0.125f-r1*2) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(0f, 0f, r + moveZ) + new Vector3(addLength, 0f, 0f);
-        uvs[nextVert + 7] = new Vector2(vertices[nextVert + 7].y, vertices[nextVert + 7].z);
+        vertices[23] = new Vector3(0f, 0f, 0.125f - r1 * 2) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(0f, 0f, r + moveZ) + new Vector3(addLength, 0f, 0f) + new Vector3(0.065f, 0f, 0f) + newPosition;
+        uvs[23] = new Vector2(vertices[23].y, vertices[23].z);
 
-        vertices[nextVert + 8] = new Vector3(0f, 0.325f - r, 0.125f-r1*2) + POS + new Vector3(moveX, 0f, 0f) + new Vector3(0f, 0f, r + moveZ) + new Vector3(addLength, 0f, 0f);
-        uvs[nextVert + 8] = new Vector2(vertices[nextVert + 8].y, vertices[nextVert + 8].z);
+
+
+        vertices[24] = new Vector3(0.11f, -.144375f, -0.57125f) + newPosition; // Need this
+        uvs[24] = new Vector2(vertices[24].y, vertices[24].z);
+
+        vertices[25] = new Vector3(0.11645408f, -.144375f, -0.56130102f) + newPosition; // Need this
+        uvs[25] = new Vector2(vertices[25].y, vertices[25].z);
+
+        vertices[26] = new Vector3(0.11f, Pos2, -0.57125f) + newPosition; // Need this
+        uvs[26] = new Vector2(vertices[26].y, vertices[26].z);
+
+        vertices[27] = new Vector3(0.11645408f, Pos2, -0.56130102f) + newPosition; // Need this
+        uvs[27] = new Vector2(vertices[27].y, vertices[27].z);
+
+        vertices[28] = new Vector3(0.12438776f, -.144375f, -0.55288265f) + newPosition;
+        uvs[28] = new Vector2(vertices[28].y, vertices[28].z);
+
+        vertices[29] = new Vector3(0.12438776f, Pos2, -0.55288265f) + newPosition;
+        uvs[29] = new Vector2(vertices[29].y, vertices[29].z);
 
 
 
@@ -142,35 +205,48 @@ public class HandRailStoneWall4 : MonoBehaviour
         triangles[5] = 3;
 
 
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < N - 1; i++)
         {
             int i3 = i * 3;
-            triangles[6 + i3 + 0] = nextVert;
-            triangles[6 + i3 + 1] = 4 + i + 1;
+            triangles[6 + i3 + 0] = 12 + i;
+            triangles[6 + i3 + 1] = 5 + i;
             triangles[6 + i3 + 2] = 4 + i;
         }
+        int nextTri = 3 * N + 6;
+        for (int i = 0; i < N - 1; i++)
+        {
+            int i3 = i * 3;
+            triangles[nextTri + i3 + 0] = 12 + i;
+            triangles[nextTri + i3 + 1] = 13 + i;
+            triangles[nextTri + i3 + 2] = 5 + i;
+        }
 
-        int nextTri = 6 + 3 * N;
-        triangles[nextTri + 0] = 2 + nextVert;
-        triangles[nextTri + 1] = 1 + nextVert;
-        triangles[nextTri + 2] = 3 + nextVert;
+        nextTri = nextTri + 3 * N;
 
-        triangles[nextTri + 3] = 2 + nextVert;
-        triangles[nextTri + 4] = 3 + nextVert;
-        triangles[nextTri + 5] = 4 + nextVert;
+        triangles[nextTri + 0] = 20;
+        triangles[nextTri + 1] = 22;
+        triangles[nextTri + 2] = 21;
+        
+        triangles[nextTri + 3] = 21;
+        triangles[nextTri + 4] = 22;
+        triangles[nextTri + 5] = 23;
 
+        triangles[nextTri + 6] = 24;
+        triangles[nextTri + 7] = 26;
+        triangles[nextTri + 8] = 25;
 
-        nextVert = nextVert + 5;
-//        nextVert = nextVert + 6;
-        triangles[nextTri + 6] = 1 + nextVert;
-        triangles[nextTri + 7] = 0 + nextVert;
-        triangles[nextTri + 8] = 2 + nextVert;
+        triangles[nextTri + 9] = 25;
+        triangles[nextTri + 10] = 26;
+        triangles[nextTri + 11] = 27;
 
-        triangles[nextTri + 9] = 1 + nextVert;
-        triangles[nextTri + 10] = 2 + nextVert;
-        triangles[nextTri + 11] = 3 + nextVert;
-
-
+        triangles[nextTri + 12] = 29;
+        triangles[nextTri + 13] = 28;
+        triangles[nextTri + 14] = 27;
+        
+        triangles[nextTri + 15] = 27;
+        triangles[nextTri + 16] = 28;
+        triangles[nextTri + 17] = 25;
+        
 
         m.vertices = vertices;
         m.triangles = triangles;

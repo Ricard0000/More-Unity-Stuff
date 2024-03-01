@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class WallEntrance3 : MonoBehaviour
 {
@@ -29,89 +30,32 @@ public class WallEntrance3 : MonoBehaviour
 
     public Material mat;
 
+
+
     GameObject gog;// = new GameObject("Plane");
     void Awake()
     {
         gog = MakeDiscreteProceduralGrid(Pos1, Pos2, Pos3, c1, c2, c3, c4, s, t, delta_theta, N, true, mat, rot, Nrot);
     }
-
-
-    public static Vector3 Arch_eq_6(float x, float z, float c1, float c2)
+    public void Start()
     {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-        return new Vector3(x, y, z);
+        /*
+        if (File.Exists(fileName))
+        {
+            Debug.Log(fileName + " already exists.");
+            return;
+        }
+        var sr = File.CreateText(fileName);
+
+        Vector3 pos1 = 
+
+        sr.WriteLine("This is my file.");
+        sr.WriteLine("I can write ints {0} or floats {1}, and so on.",
+            1, 4.2);
+        sr.Close();
+*/
     }
 
-    public static Vector3 Arch_eq_6_1(float x, float z, float c1, float c2)
-    {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-        return new Vector3(z, y, x);
-    }
-
-    public static Vector3 Arch_eq_6_A(float x, float z, float c1, float c2, float angle)
-    {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-
-        float temp = x;
-        x = x * Mathf.Cos(angle) - z * Mathf.Sin(angle);
-        z = temp * Mathf.Sin(angle) + z * Mathf.Cos(angle);
-        return new Vector3(x, y, z);
-    }
-
-    public static Vector3 Arch_eq_6_B(float x, float z, float c1, float c2, float angle)
-    {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-
-        float temp = x;
-        x = x * Mathf.Cos(-angle) - z * Mathf.Sin(-angle);
-        z = temp * Mathf.Sin(-angle) + z * Mathf.Cos(-angle);
-        return new Vector3(x, y, z);
-    }
-
-    public static Vector3 Arch_eq_6_C(float x, float z, float c1, float c2, float angle)
-    {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-
-        float temp = x;
-        x = x * Mathf.Cos(-2 * angle) - z * Mathf.Sin(-2 * angle);
-        z = temp * Mathf.Sin(-2 * angle) + z * Mathf.Cos(-2 * angle);
-        return new Vector3(x, y, z);
-    }
-
-    public static float Vert_Rot_x(float x, float z, float angle)
-    {
-        return x * Mathf.Cos(angle) - z * Mathf.Sin(angle);
-    }
-
-    public static float Vert_Rot_z(float x, float z, float angle)
-    {
-        return x * Mathf.Sin(angle) + z * Mathf.Cos(angle);
-    }
-
-
-    public static float uv_Arch_eq_6(float x)
-    {
-        float y;
-        y = Mathf.Sqrt(1 - Mathf.Abs(x) / (1.0f + 0.00001f));
-        y = y + Mathf.Sqrt(1 - Mathf.Abs((x) * (x)) / (1.0f + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-        return y;
-    }
 
     public static GameObject MakeDiscreteProceduralGrid(float Pos1, float Pos2, float Pos3, float c1, float c2, float c3, float c4, float s, float t, float delta_theta, int N, bool collider, Material mat, int rot, int Nrot)
     {
@@ -127,9 +71,9 @@ public class WallEntrance3 : MonoBehaviour
         Vector2[] uvs;
         int[] triangles;
 
-        vertices = new Vector3[(2 * N + 1) + 26];
-        triangles = new int[3 * (2 * N - 6) + 3 + 30 + 9 + 15];
-        uvs = new Vector2[(2 * N + 1) + 26];
+        vertices = new Vector3[25];
+        triangles = new int[48];
+        uvs = new Vector2[25];
 
 
         float angle1 = -45f / 180f * PI;
@@ -181,19 +125,114 @@ public class WallEntrance3 : MonoBehaviour
         Vector3 aTemp = vertices[6] - vertices[8];
         float radius = aTemp.magnitude * 0.5f;
 
+//        Vector3 probe = new Vector3(0f, -0.125f, 0f);
+//        vertices[0] = vertices[0] + probe;
 
-        /* Dead code
-        for(int i = 0; i < Nrot; i++)
+
+
+
+        vertices[12] = (vertices[10] + vertices[11]) * 0.5f;//Midpoint of Arch.
+        uvs[12] = new Vector2(vertices[12].y, vertices[12].z);
+
+        vertices[13] = vertices[10] + new Vector3(0f, -0.09375f, 0f);
+        uvs[13] = new Vector2(vertices[13].y, vertices[13].z);
+
+        vertices[14] = new Vector3(0.6320313f, 0.4977359f, -0.7520834f);
+        uvs[14] = new Vector2(vertices[14].y, vertices[14].z);
+
+        vertices[15] = new Vector3(0.65561526f, 0.49187653f, -0.7192709f);
+        uvs[15] = new Vector2(vertices[15].y, vertices[15].z);
+
+        vertices[16] = new Vector3(0.67246095f, 0.4742984f, -0.6958334f);
+        uvs[16] = new Vector2(vertices[16].y, vertices[16].z);
+
+        vertices[17] = new Vector3(0.68256836f, 0.44500153f, -0.6817709f);
+        uvs[17] = new Vector2(vertices[17].y, vertices[17].z);
+
+        vertices[18] = new Vector3(0.6859375f, 0.4039859f, -0.6770834f);
+        uvs[18] = new Vector2(vertices[18].y, vertices[18].z);
+
+        vertices[19] = vertices[11] + new Vector3(0f, -0.09375f, 0f);
+        uvs[19] = new Vector2(vertices[19].y, vertices[19].z);
+
+
+        vertices[20] = new Vector3(0.6320313f, 0.4977359f, -0.7520834f);
+        uvs[20] = new Vector2(vertices[20].y, vertices[20].z);
+
+        vertices[21] = new Vector3(0.60844734f, 0.49187653f, -0.7848959f);
+        uvs[21] = new Vector2(vertices[21].y, vertices[21].z);
+
+        vertices[22] = new Vector3(0.59160165f, 0.4742984f, -0.8083334f);
+        uvs[22] = new Vector2(vertices[22].y, vertices[22].z);
+
+        vertices[23] = new Vector3(0.58149424f, 0.44500153f, -0.8223959f);
+        uvs[23] = new Vector2(vertices[23].y, vertices[23].z);
+
+        vertices[24] = new Vector3(0.5781251f, 0.4039859f, -0.8270834f);
+        uvs[24] = new Vector2(vertices[24].y, vertices[24].z);
+
+
+        // 12 is probably a dead vert. It might be the mid vert.
+        // 13 is probably a dead vert. It might be the mid vert.
+        // 19 is probably a dead vert.
+
+        //        Vector3 probe = new Vector3(0f, -0.125f, 0f);
+
+
+        //        Vector3 probe = new Vector3(0.125f, 0f, 0f);
+        //        vertices[25] = vertices[25] + probe;
+
+
+
+        // Need to Bezier Curve this:
+
+        //   Left =  Vector3( 0.6859375f, 0.4977359f, -.6770834f)
+
+        //  Right =  Vector3( 0.5781251f, 0.4977359f, -0.8270834f)
+
+
+        //Midpoint=  Vector3( 0.6320313f, 0.4977359f,-0.7520834f)
+
+        // BotLeft=  Vector3( 0.6859375f, 0.4039859f,-0.6770834f)
+
+        string fileName = "VertRecords4.txt";
+
+        var sr = File.CreateText(fileName);
+
+        Vector3 pos1;
+
+        float xx;
+        float yy;
+        float zz;
+        pos1 = vertices[9];
+        xx = pos1[0];
+        yy = pos1[1];
+        zz = pos1[2];
+        sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        //      24 to 20
+        for (int L = 0; L < 5; L++)
         {
-            t = PI / (Nrot - 1f) * (i - 1f);
-            x = Mathf.Cos(t);
-            y = Mathf.Sin(t);
-            z = 0f;
+            pos1 = vertices[24 - L];
+            xx = pos1[0];
+            yy = pos1[1];
+            zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
         }
-        */
-
-
-        // Do rotation:
+        //      14 to 18
+        for (int L = 0; L < 5; L++)
+        {
+            pos1 = vertices[14 + L];
+            xx = pos1[0];
+            yy = pos1[1];
+            zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        pos1 = vertices[7];
+        xx = pos1[0];
+        yy = pos1[1];
+        zz = pos1[2];
+        sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        sr.Close();
 
 
         triangles[0] = 1;
@@ -228,6 +267,41 @@ public class WallEntrance3 : MonoBehaviour
         triangles[21] = 8;
         triangles[22] = 11;
         triangles[23] = 10;
+
+
+        triangles[24] = 14;
+        triangles[25] = 15;
+        triangles[26] = 10;
+
+        triangles[27] = 15;
+        triangles[28] = 16;
+        triangles[29] = 10;
+
+        triangles[30] = 16;
+        triangles[31] = 17;
+        triangles[32] = 10;
+
+        triangles[33] = 17;
+        triangles[34] = 18;
+        triangles[35] = 10;
+
+        triangles[36] = 11;
+        triangles[37] = 21;
+        triangles[38] = 20;
+
+        triangles[39] = 11;
+        triangles[40] = 22;
+        triangles[41] = 21;
+
+        triangles[42] = 11;
+        triangles[43] = 23;
+        triangles[44] = 22;
+
+        triangles[45] = 11;
+        triangles[46] = 24;
+        triangles[47] = 23;
+
+
 
 
         m.vertices = vertices;

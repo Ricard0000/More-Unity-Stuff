@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.IO;
 public class WhiteWall1 : MonoBehaviour
 {
 
@@ -144,7 +144,7 @@ public class WhiteWall1 : MonoBehaviour
         float dz = 0.0625f;
 
         int itsize1 = 0;
-        
+
         // Main Arch
         for (int i = 0; i < 2 * N + 1; i++)
         {
@@ -152,6 +152,8 @@ public class WhiteWall1 : MonoBehaviour
             z = 0.0f - dz - dz - dz - dz - dz * 0.3333333f - dz * 2.5f;
             vertices[i] = Arch_eq_6_A(x, z, 0.7f * c1, 0.7f * c2, angle) + POS;
         }
+
+
         itsize1 = 2 * N + 1 + itsize1;
         for (int i = 0; i < 2 * N + 1; i++)
         {
@@ -248,9 +250,59 @@ public class WhiteWall1 : MonoBehaviour
         vertices[0 + itsize1] = vertR; // Correct this to -1
 
 
+        //        vertices[itsize1] = vertices[itsize1] + probe;
+
+//        Vector3 probe = new Vector3(0f, 0f, -0.0625f);
+//        Vector3 probe = new Vector3(0f, -0.0625f, 0f);
+//        vertices[47] = vertices[47] + probe;
 
 
+/*
+        string fileName = "VertRecords3.txt";
 
+        var sr = File.CreateText(fileName);
+
+        Vector3 pos1;
+
+        float xx;
+        float yy;
+        float zz;
+        for (int L = 42; L < 45; L++)
+        {
+            pos1 = vertices[L];
+            xx = pos1[0];
+            yy = pos1[1];
+            zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        for (int L = 53; L < 58; L++)
+        {
+            pos1 = vertices[L];
+            xx = pos1[0];
+            yy = pos1[1];
+            zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        // 64 to 60
+        for (int L = 0; L < 5; L++)
+        {
+            pos1 = vertices[64 - L];
+            xx = pos1[0];
+            yy = pos1[1];
+            zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        //50 to 47
+        for (int L = 0; L < 4; L++)
+        {
+            pos1 = vertices[50 - L];
+            xx = pos1[0];
+            yy = pos1[1];
+            zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        sr.Close();
+*/
 
 
         // First Top arch part (Right Side)

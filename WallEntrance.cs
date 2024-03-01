@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.IO;
 public class WallEntrance : MonoBehaviour
 {
 
@@ -33,25 +33,6 @@ public class WallEntrance : MonoBehaviour
         gog = MakeDiscreteProceduralGrid(Pos1, Pos2, Pos3, c1, c2, c3, c4, s, t, delta_theta, N, true, mat, rot);
     }
 
-
-    public static Vector3 Arch_eq_6(float x, float z, float c1, float c2)
-    {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-        return new Vector3(x, y, z);
-    }
-
-    public static Vector3 Arch_eq_6_1(float x, float z, float c1, float c2)
-    {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-        return new Vector3(z, y, x);
-    }
-
     public static Vector3 Arch_eq_6_A(float x, float z, float c1, float c2, float angle)
     {
         float y;
@@ -65,51 +46,6 @@ public class WallEntrance : MonoBehaviour
         return new Vector3(x, y, z);
     }
 
-    public static Vector3 Arch_eq_6_B(float x, float z, float c1, float c2, float angle)
-    {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-
-        float temp = x;
-        x = x * Mathf.Cos(-angle) - z * Mathf.Sin(-angle);
-        z = temp * Mathf.Sin(-angle) + z * Mathf.Cos(-angle);
-        return new Vector3(x, y, z);
-    }
-
-    public static Vector3 Arch_eq_6_C(float x, float z, float c1, float c2, float angle)
-    {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-
-        float temp = x;
-        x = x * Mathf.Cos(-2 * angle) - z * Mathf.Sin(-2 * angle);
-        z = temp * Mathf.Sin(-2 * angle) + z * Mathf.Cos(-2 * angle);
-        return new Vector3(x, y, z);
-    }
-
-    public static float Vert_Rot_x(float x, float z, float angle)
-    {
-        return x * Mathf.Cos(angle) - z * Mathf.Sin(angle);
-    }
-
-    public static float Vert_Rot_z(float x, float z, float angle)
-    {
-        return x * Mathf.Sin(angle) + z * Mathf.Cos(angle);
-    }
-
-
-    public static float uv_Arch_eq_6(float x)
-    {
-        float y;
-        y = Mathf.Sqrt(1 - Mathf.Abs(x) / (1.0f + 0.00001f));
-        y = y + Mathf.Sqrt(1 - Mathf.Abs((x) * (x)) / (1.0f + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-        return y;
-    }
 
     public static GameObject MakeDiscreteProceduralGrid(float Pos1, float Pos2, float Pos3, float c1, float c2, float c3, float c4, float s, float t, float delta_theta, int N, bool collider, Material mat, int rot)
     {
@@ -229,7 +165,55 @@ public class WallEntrance : MonoBehaviour
         uvs[0 + nextVert] = new Vector2(vertices[0 + nextVert].x, vertices[0 + nextVert].y);
 
 
-        //        vertices[9 + nextVert] = new Vector3(-0.525f, temp[1], temp2[2]);
+//        Vector3 probe = new Vector3(-0.125f,0f,0f);
+//      vertices[33] = vertices[33] + probe; // 14 is a dead vert
+
+//        vertices[9 + nextVert] = new Vector3(-0.525f, temp[1], temp2[2]);
+/*
+        string fileName = "VertRecords2.txt";
+
+        var sr = File.CreateText(fileName);
+
+        Vector3 pos1 = vertices[29];
+
+        float xx = pos1[0];
+        float yy = pos1[1];
+        float zz = pos1[2];
+        sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+
+        for (int L = 14; L < 23; L++)
+        {
+            pos1 = vertices[L];
+
+            xx = pos1[0];
+            yy = pos1[1];
+            zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        pos1 = vertices[33];
+        xx = pos1[0];
+        yy = pos1[1];
+        zz = pos1[2];
+        sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+
+        //        sr.WriteLine("This is my file.");
+        sr.Close();
+        */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // First Top arch part (Right Side)
         for (int i = 0; i < 2 * N - 6; i++)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class WallEntrance2 : MonoBehaviour
 {
@@ -31,61 +32,11 @@ public class WallEntrance2 : MonoBehaviour
 
     GameObject gog;// = new GameObject("Plane");
 
-    void Update()
-    {
-        float Pos1 = 0.1825f - 0.0625f;//Object position
-        float Pos2 = -0.221875f - 0.06f;
-        float Pos3 = -0.9275f;//4375f;
-        Vector3 POS;
-        POS = new Vector3(Pos1, Pos2, Pos3);
-
-        //        Vector3 particlePosition = new Vector3(-0.024375f,0.053805460f,-0.092708340f);
-
-        Vector3 particlePosition = new Vector3(-0.243750f,0.37410460f,-0.92708340f);
-
-
-
-
-
-        float time = 0f;
-        float x = .16395000f * Mathf.Cos(time + 0 * PI / 2f);
-        float y = .16395000f * Mathf.Sin(time + 0 * PI / 2f);
-//        new Vector3(-x + .16395000f, y, 0f) + new Vector3(aTemp2[0], aTemp2[1], aTemp2[2]) + POS;
-
-
-
-
-        //        Debug.Log(particlePosition * 100000000);
-        //      Debug.Log(particlePosition * 100000000);
-        //    Debug.Log(particlePosition * 100000000);
-        //  Debug.Log(particlePosition * 100000000);
-        //   system.Emit(new ParticleSystem.EmitParams() { position = particlePosition }, 1);
-    }
-
-
     void Awake()
     {
         gog = MakeDiscreteProceduralGrid(Pos1, Pos2, Pos3, c1, c2, c3, c4, s, t, delta_theta, N, true, mat, rot, Nrot);
     }
 
-
-    public static Vector3 Arch_eq_6(float x, float z, float c1, float c2)
-    {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-        return new Vector3(x, y, z);
-    }
-
-    public static Vector3 Arch_eq_6_1(float x, float z, float c1, float c2)
-    {
-        float y;
-        y = c2 * Mathf.Sqrt(1 - Mathf.Abs(x) / (c1 + 0.00001f));
-        y = y + c2 * Mathf.Sqrt(1 - Mathf.Abs(x * x) / (c1 * c1 + 0.00001f));
-        y = y / 2.0f - 0.00001f;
-        return new Vector3(z, y, x);
-    }
 
     public static Vector3 Arch_eq_6_A(float x, float z, float c1, float c2, float angle)
     {
@@ -224,18 +175,7 @@ public class WallEntrance2 : MonoBehaviour
         Vector3 aTemp1 = vertices[0] - vertices[5];
         Vector3 aTemp2 = vertices[5];
 
-        Debug.Log(aTemp2 * 100000000);
-        Debug.Log(aTemp2 * 100000000);
-        Debug.Log(aTemp2 * 100000000);
-        Debug.Log(aTemp2 * 100000000);
-
-
         float radius = Mathf.Abs(aTemp1[1]); // .16395000
-        Debug.Log((radius - radius * 0.8f) * 100000000);
-        Debug.Log((radius - radius * 0.8f) * 100000000);
-        Debug.Log((radius - radius * 0.8f) * 100000000);
-        Debug.Log((radius - radius * 0.8f) * 100000000);
-
 
         radius = radius * 0.8f;
 
@@ -324,6 +264,14 @@ public class WallEntrance2 : MonoBehaviour
         vertices[saveCorrection2] = vertices[saveCorrection2] + new Vector3(-0.0455f, 0f, 0f);
         uvs[saveCorrection2] = new Vector2(vertices[saveCorrection2].x, vertices[saveCorrection2].y);
 
+
+        // 5 & 7 is a dead vert?
+//        Vector3 probe = new Vector3(0f, 0.0325f, 0f);
+//        vertices[30] = vertices[30] + probe;
+        
+
+
+
         int i3 = 0;
         triangles[i3] = 2;
         triangles[i3 + 1] = 1;
@@ -401,7 +349,72 @@ public class WallEntrance2 : MonoBehaviour
         triangles[nextTri + 1] = 16 + 3 * Nrot;
         triangles[nextTri + 2] = 2 * Nrot + 7;
 
-//        Debug.Log(vertices[4]*100000000);
+
+
+
+
+
+/*
+        string fileName = "VertRecords.txt";
+
+        var sr = File.CreateText(fileName);
+
+        for (int L = 0; L < 2; L++)
+        {
+            Vector3 pos1 = vertices[2 + L];
+
+            float xx = pos1[0];
+            float yy = pos1[1];
+            float zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        for (int L = 20; L < 26; L++)
+        {
+            Vector3 pos1 = vertices[L];
+
+            float xx = pos1[0];
+            float yy = pos1[1];
+            float zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        for (int L = 26; L < 31; L++)
+        {
+            Vector3 pos1 = vertices[L];
+
+            float xx = pos1[0];
+            float yy = pos1[1];
+            float zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        for (int L = 0; L < 5; L++)
+        {
+            Vector3 pos1 = vertices[17 - L];
+
+            float xx = pos1[0];
+            float yy = pos1[1];
+            float zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        for (int L = 0; L < 5; L++)
+        {
+            Vector3 pos1 = vertices[12 - L];
+
+            float xx = pos1[0];
+            float yy = pos1[1];
+            float zz = pos1[2];
+            sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
+        }
+        //        sr.WriteLine("This is my file.");
+        sr.Close();
+
+*/
+
+
+
+
+
+
+        //        Debug.Log(vertices[4]*100000000);
 
 
         m.vertices = vertices;
