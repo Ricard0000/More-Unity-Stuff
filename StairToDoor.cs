@@ -58,23 +58,23 @@ public class StairToDoor : MonoBehaviour
         triangles = new int[15];
         uvs = new Vector2[8];
 
-        // TO DO: Probe Verts in on wall. Then print out verts
-
-
-//        Vector3 probe = new Vector3(-0.125f, 0f, 0f);
-
         vertices[0] = new Vector3(-0.74375f, -0.2816955f, -0.9270834f) + new Vector3(-0.1f, 0.125f, 0f);
+        uvs[0] = new Vector2(vertices[0].x, vertices[0].z);
+
         vertices[1] = new Vector3(-0.30625f, -0.2816955f, -0.9270834f) + new Vector3(0.28875f, 0.125f, 0f);
-//        vertices[2] = new Vector3(-0.74375f, -0.2816955f, -0.9270834f) + new Vector3(-0.1f, 0.125f, 0.125f);
-//        vertices[3] = new Vector3(-0.30625f, -0.2816955f, -0.9270834f) + new Vector3(0.28875f, 0.125f, 0.125f);
+        uvs[1] = new Vector2(vertices[1].x, vertices[1].z);
+
         vertices[2] = new Vector3(-0.74375f, -0.2816955f, -0.8025f) + new Vector3(-0.1f, 0.125f, 0f);
+        uvs[2] = new Vector2(vertices[2].x, vertices[2].z);
+
         vertices[3] = new Vector3(-0.30625f, -0.2816955f, -0.8025f) + new Vector3(0.28875f, 0.125f, 0f);
+        uvs[3] = new Vector2(vertices[3].x, vertices[3].z);
+
         vertices[4] = new Vector3(-0.74375f - 0.1f, -0.1566955f, -0.7882653f);
+        uvs[4] = new Vector2(vertices[4].x, vertices[4].z);
 
         vertices[5] = new Vector3(-0.30625f + 0.28875f, -0.1566955f, -0.7882653f);
-//        vertices[6] = new Vector3(-0.01359375f, -0.1566955f, -0.7698469f);
-//        vertices[7] = new Vector3(-0.01359375f - 0.0375f, -0.1566955f, -0.7698469f + 0.025f);
-         
+        uvs[5] = new Vector2(vertices[5].x, vertices[5].z);
 
 
 

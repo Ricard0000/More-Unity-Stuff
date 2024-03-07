@@ -69,10 +69,10 @@ public class ArchSideWall1 : MonoBehaviour
         vertices[1] = new Vector3(-0.875f, 0.003662168f, -0.9270833f);
         uvs[1] = new Vector2(vertices[1].y, vertices[1].z);
 
-        vertices[2] = new Vector3(-0.875f, 0.003662168f - 0.03125f, -0.9270833f);
+        vertices[2] = new Vector3(-0.875f, 0.003662168f - 0.03125f, -0.9270833f) + new Vector3(0.001f, 0f, 0f);
         uvs[2] = new Vector2(vertices[2].y, vertices[2].z);
 
-        vertices[3] = new Vector3(-0.875f, 0.003662168f - 0.03125f, -0.4270834f);
+        vertices[3] = new Vector3(-0.875f, 0.003662168f - 0.03125f, -0.4270834f); // needs to be modded
         uvs[3] = new Vector2(vertices[3].y, vertices[3].z);
 
         float lambda = 0.25f;
