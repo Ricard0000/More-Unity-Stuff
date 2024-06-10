@@ -114,7 +114,7 @@ public class RayTracing : MonoBehaviour
                     points[L] = new Vector3(d * tempVect[0], d * tempVect[1], d * tempVect[2]) + v1;
                     normals[L] = hit.normal;
                 }
-                else 
+                else
                 {
                     points[L] = new Vector3(0f, 0f, 0f);
                     normals[L] = new Vector3(0f, 0f, 0f);
@@ -258,7 +258,7 @@ public class RayTracing : MonoBehaviour
         Vector2[] uvs;
         int[] triangles;
 
-        float scale = 0.03125f * 2f;
+        float scale = 0.03125f * 0.75f;
         vertices = new Vector3[4 * dimension * dimension];
         triangles = new int[6 * dimension * dimension * 2];
         uvs = new Vector2[4 * dimension * dimension];
@@ -294,9 +294,10 @@ public class RayTracing : MonoBehaviour
             {
                 int i4 = 4 * i;
                 r = (points[i] - origin).magnitude;
-                basis1 = CrossProduct(points[i] - origin, normals[i]);
+                //                basis1 = CrossProduct(points[i] - origin, normals[i]);
+                basis1 = new Vector3(normals[i].z, 0f, -normals[i].x);
                 basis1.Normalize();
-                basis2 = CrossProduct(basis1, normals[i]);
+                basis2 = CrossProduct(normals[i], basis1);
                 normalizedScale = FOV / ((float)dimension * 2f * Mathf.PI) * r;
 
                 dir1 = basis1 + basis2;
@@ -332,9 +333,9 @@ public class RayTracing : MonoBehaviour
             triangles[i6] = 0 + i4;
             triangles[1 + i6] = 2 + i4;
             triangles[2 + i6] = 1 + i4;
-            triangles[3 + i6] = 0 + i4;
-            triangles[4 + i6] = 3 + i4;
-            triangles[5 + i6] = 2 + i4;
+            triangles[3 + i6] = 1 + i4;
+            triangles[4 + i6] = 2 + i4;
+            triangles[5 + i6] = 3 + i4;
         }
         
 
@@ -343,8 +344,8 @@ public class RayTracing : MonoBehaviour
             int i4 = 4 * i;
             uvs[i4] = new Vector2(0f, 0f);
             uvs[1 + i4] = new Vector2(0f, 1f);
-            uvs[2 + i4] = new Vector2(1f, 1f);
-            uvs[3 + i4] = new Vector2(1f, 0f);
+            uvs[2 + i4] = new Vector2(1f, 0f);
+            uvs[3 + i4] = new Vector2(1f, 1f);
         } 
 
         m.vertices = vertices;
