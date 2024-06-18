@@ -218,67 +218,61 @@ public class Mesh15 : MonoBehaviour
             triangles[nextTri + i3 + 2] = 6 * N + i + 1;
         }
 
-
-
-        //        vertices[itsize1] = vertices[itsize1] + probe;
-
-        //        Vector3 probe = new Vector3(0f, 0f, -0.0625f);
-        //        Vector3 probe = new Vector3(0f, -0.0625f, 0f);
-        //        vertices[47] = vertices[47] + probe;
-
-
-        /*
-                string fileName = "VertRecords3.txt";
-
-                var sr = File.CreateText(fileName);
-
-                Vector3 pos1;
-
-                float xx;
-                float yy;
-                float zz;
-                for (int L = 42; L < 45; L++)
-                {
-                    pos1 = vertices[L];
-                    xx = pos1[0];
-                    yy = pos1[1];
-                    zz = pos1[2];
-                    sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
-                }
-                for (int L = 53; L < 58; L++)
-                {
-                    pos1 = vertices[L];
-                    xx = pos1[0];
-                    yy = pos1[1];
-                    zz = pos1[2];
-                    sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
-                }
-                // 64 to 60
-                for (int L = 0; L < 5; L++)
-                {
-                    pos1 = vertices[64 - L];
-                    xx = pos1[0];
-                    yy = pos1[1];
-                    zz = pos1[2];
-                    sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
-                }
-                //50 to 47
-                for (int L = 0; L < 4; L++)
-                {
-                    pos1 = vertices[50 - L];
-                    xx = pos1[0];
-                    yy = pos1[1];
-                    zz = pos1[2];
-                    sr.WriteLine("{0}, {1}, {2}", xx, yy, zz);
-                }
-                sr.Close();
-        */
-
-
         for (int i = 0; i < vertices.Length; i++)
         {
             vertices[i] = vertices[i] * meshScale;
         }
+
+        for (int i = 0; i < N; i++)
+        {
+            uvs[i] = new Vector2(i / (float)(N - 1), 0f);
+        }
+        int nextUvVert = N;
+
+        for (int i = 0; i < N; i++)
+        {
+            uvs[nextUvVert + i] = new Vector2(i / (float)(N - 1), 0.5f / 5f);
+        }
+
+        nextUvVert = N + nextUvVert;
+
+        for (int i = 0; i < N; i++)
+        {
+            uvs[nextUvVert + i] = new Vector2(i / (float)(N - 1), 1.15f / 5f);
+        }
+        nextUvVert = N + nextUvVert;
+
+        for (int i = 0; i < N; i++)
+        {
+            uvs[nextUvVert + i] = new Vector2(i / (float)(N - 1), 1.75f / 5f);
+        }
+
+        nextUvVert = N + nextUvVert;
+
+        for (int i = 0; i < N; i++)
+        {
+            uvs[nextUvVert + i] = new Vector2(i / (float)(N - 1), 2.25f / 5f);
+        }
+        nextUvVert = N + nextUvVert;
+
+        for (int i = 0; i < N; i++)
+        {
+            uvs[nextUvVert + i] = new Vector2(i / (float)(N - 1), 3f / 5f);
+        }
+
+        nextUvVert = N + nextUvVert;
+
+        for (int i = 0; i < N; i++)
+        {
+            uvs[nextUvVert + i] = new Vector2(i / (float)(N - 1), 1f);
+        }
+
+
+
+
+
+
+
 
         m.vertices = vertices;
         m.triangles = triangles;

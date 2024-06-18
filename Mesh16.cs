@@ -50,11 +50,7 @@ public class Mesh16 : MonoBehaviour
         Vector3[] vertices;
         Vector2[] uvs;
         int[] triangles;
-        /*
-        vertices = new Vector3[3*(2 * N+1)];
-        triangles = new int[12 * N+1000];
-        uvs = new Vector2[3 * (2 * N + 1)];
-        */
+
         vertices = new Vector3[2 * N];
         triangles = new int[6 * N];
         uvs = new Vector2[2 * N];
@@ -162,6 +158,23 @@ public class Mesh16 : MonoBehaviour
         {
             vertices[i] = vertices[i] * meshScale;
         }
+
+
+
+
+        for (int i = 0; i < N; i++)
+        {
+            uvs[i] = new Vector2(i / (float)(N - 1), 0f);
+        }
+        nextVert = N;
+
+        for (int i = 0; i < N; i++)
+        {
+            uvs[nextVert + i] = new Vector2(i / (float)(N - 1), 1f);
+        }
+
+
+
 
         m.vertices = vertices;
         m.triangles = triangles;

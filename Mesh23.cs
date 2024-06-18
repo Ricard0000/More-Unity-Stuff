@@ -51,9 +51,9 @@ public class Mesh23 : MonoBehaviour
         Vector2[] uvs;
         int[] triangles;
 
-        vertices = new Vector3[172];
-        triangles = new int[330];
-        uvs = new Vector2[172];
+        vertices = new Vector3[248];
+        triangles = new int[444];
+        uvs = new Vector2[248];
         float meshScale = 4f;
 
         
@@ -445,12 +445,10 @@ public class Mesh23 : MonoBehaviour
         vertices[150] = new Vector3(0f, -0.06749998f, -0.225f-0.03f);
         vertices[151] = new Vector3(0f, -0.05968748f, -0.225f - 0.03f);
 
-
         vertices[152] = new Vector3(0f, -0.06749998f, -0.225f - 0.03f);
         vertices[153] = new Vector3(0f, -0.05968748f, -0.225f - 0.03f);
         vertices[154] = new Vector3(0f, -0.06749998f - 0.008f , -0.225f - 0.045f);
         vertices[155] = new Vector3(0f, -0.05968748f - 0.01f, -0.225f - 0.05f);
-
 
         vertices[156] = new Vector3(0f, -0.07549998f, -0.27f);
         vertices[157] = new Vector3(0f, -0.06968748f, -0.275f);
@@ -473,15 +471,126 @@ public class Mesh23 : MonoBehaviour
         vertices[171] = new Vector3(0f, -0.10218748f + 0.005f, -0.263f + 0.013f);
 
 
+        // Front Curvy part (otherside):
+        vertices[172] = new Vector3(0.00925f, -0.06749998f, -0.225f);
+        vertices[173] = new Vector3(0.00925f, -0.05968748f, -0.225f);
+        vertices[174] = new Vector3(0.00925f, -0.06749998f, -0.225f - 0.03f);
+        vertices[175] = new Vector3(0.00925f, -0.05968748f, -0.225f - 0.03f);
 
-        /*
-                vertices[152] = new Vector3(0.00925f, -0.06749998f, -0.225f);
-                vertices[153] = new Vector3(0.00925f, -0.05968748f, -0.225f);
-                vertices[154] = new Vector3(0.00925f, -0.06749998f, -0.225f - 0.03f);
-                vertices[155] = new Vector3(0.00925f, -0.05968748f, -0.225f - 0.03f);
-        */
+        vertices[176] = new Vector3(0.00925f, -0.06749998f, -0.225f - 0.03f);
+        vertices[177] = new Vector3(0.00925f, -0.05968748f, -0.225f - 0.03f);
+        vertices[178] = new Vector3(0.00925f, -0.06749998f - 0.008f, -0.225f - 0.045f);
+        vertices[179] = new Vector3(0.00925f, -0.05968748f - 0.01f, -0.225f - 0.05f);
+
+        vertices[180] = new Vector3(0.00925f, -0.07549998f, -0.27f);
+        vertices[181] = new Vector3(0.00925f, -0.06968748f, -0.275f);
+        vertices[182] = new Vector3(0.00925f, -0.08449998f + 0.003f, -0.274f);
+        vertices[183] = new Vector3(0.00925f, - 0.08218748f, -0.282f);
+
+        vertices[184] = new Vector3(0.00925f, -0.08449998f + 0.003f, -0.274f);
+        vertices[185] = new Vector3(0.00925f, -0.08218748f, -0.282f);
+        vertices[186] = new Vector3(0.00925f, -0.09349998f, -0.271f);
+        vertices[187] = new Vector3(0.00925f, -0.09518748f - 0.002f, -0.278f + 0.001f);
+
+        vertices[188] = new Vector3(0.00925f, -0.09349998f, -0.271f);
+        vertices[189] = new Vector3(0.00925f, -0.09518748f - 0.002f, -0.278f + 0.001f);
+        vertices[190] = new Vector3(0.00925f, -0.09549998f, -0.263f);
+        vertices[191] = new Vector3(0.00925f, -0.10218748f, -0.263f);
+
+        vertices[192] = new Vector3(0.00925f, -0.09549998f, -0.263f);
+        vertices[193] = new Vector3(0.00925f, -0.10218748f, -0.263f);
+        vertices[194] = new Vector3(0.00925f, -0.09549998f + 0.005f, -0.263f + 0.01f);
+        vertices[195] = new Vector3(0.00925f, -0.10218748f + 0.005f, -0.263f + 0.013f);
 
 
+        // Curvy part's UV's.
+        for (int i = 147; i < 196; i++)
+        {
+            uvs[i] = new Vector2(vertices[i].y, vertices[i].z);
+        }
+
+
+        //Inner side of curvy part
+        vertices[196] = new Vector3(0f, -0.06749998f, -0.225f);
+        vertices[197] = new Vector3(0f, -0.06749998f, -0.225f - 0.03f);
+        vertices[198] = new Vector3(0.00925f, -0.06749998f, -0.225f);
+        vertices[199] = new Vector3(0.00925f, -0.06749998f, -0.225f - 0.03f);
+
+        vertices[200] = new Vector3(0f, -0.06749998f, -0.225f - 0.03f);
+        vertices[201] = new Vector3(0f, -0.06749998f - 0.008f, -0.225f - 0.045f);
+        vertices[202] = new Vector3(0.00925f, -0.06749998f, -0.225f - 0.03f);
+        vertices[203] = new Vector3(0.00925f, -0.06749998f - 0.008f, -0.225f - 0.045f);
+
+        vertices[204] = new Vector3(0f, -0.07549998f, -0.27f);
+        vertices[205] = new Vector3(0f, -0.08449998f + 0.003f, -0.274f);
+        vertices[206] = new Vector3(0.00925f, -0.07549998f, -0.27f);
+        vertices[207] = new Vector3(0.00925f, -0.08449998f + 0.003f, -0.274f);
+
+        vertices[208] = new Vector3(0f, -0.08449998f + 0.003f, -0.274f);
+        vertices[209] = new Vector3(0f, -0.09349998f, -0.271f);
+        vertices[210] = new Vector3(0.00925f, -0.08449998f + 0.003f, -0.274f);
+        vertices[211] = new Vector3(0.00925f, -0.09349998f, -0.271f);
+
+        vertices[212] = new Vector3(0f, -0.09349998f, -0.271f);
+        vertices[213] = new Vector3(0f, -0.09549998f, -0.263f);
+        vertices[214] = new Vector3(0.00925f, -0.09349998f, -0.271f);
+        vertices[215] = new Vector3(0.00925f, -0.09549998f, -0.263f);
+
+        vertices[216] = new Vector3(0f, -0.09549998f, -0.263f);
+        vertices[217] = new Vector3(0f, -0.09549998f + 0.005f, -0.263f + 0.01f);
+        vertices[218] = new Vector3(0.00925f, -0.09549998f, -0.263f);
+        vertices[219] = new Vector3(0.00925f, -0.09549998f + 0.005f, -0.263f + 0.01f);
+
+
+
+        // Outter part of the curvy part
+        vertices[220] = new Vector3(0f, -0.05968748f, -0.225f);
+        vertices[221] = new Vector3(0f, -0.05968748f, -0.225f - 0.03f);
+        vertices[222] = new Vector3(0.00925f, -0.05968748f, -0.225f);
+        vertices[223] = new Vector3(0.00925f, -0.05968748f, -0.225f - 0.03f);
+
+        vertices[224] = new Vector3(0f, -0.05968748f, -0.225f - 0.03f);
+        vertices[225] = new Vector3(0f, -0.05968748f - 0.01f, -0.225f - 0.05f);
+        vertices[226] = new Vector3(0.00925f, -0.05968748f, -0.225f - 0.03f);
+        vertices[227] = new Vector3(0.00925f, -0.05968748f - 0.01f, -0.225f - 0.05f);
+
+        vertices[228] = new Vector3(0f, -0.06968748f, -0.275f);
+        vertices[229] = new Vector3(0f, -0.08218748f, -0.282f);
+        vertices[230] = new Vector3(0.00925f, -0.06968748f, -0.275f);
+        vertices[231] = new Vector3(0.00925f, -0.08218748f, -0.282f);
+
+        vertices[232] = new Vector3(0f, -0.08218748f, -0.282f);
+        vertices[233] = new Vector3(0f, -0.09518748f - 0.002f, -0.278f + 0.001f);
+        vertices[234] = new Vector3(0.00925f, -0.08218748f, -0.282f);
+        vertices[235] = new Vector3(0.00925f, -0.09518748f - 0.002f, -0.278f + 0.001f);
+
+        vertices[236] = new Vector3(0f, -0.09518748f - 0.002f, -0.278f + 0.001f);
+        vertices[237] = new Vector3(0f, -0.10218748f, -0.263f);
+        vertices[238] = new Vector3(0.00925f, -0.09518748f - 0.002f, -0.278f + 0.001f);
+        vertices[239] = new Vector3(0.00925f, -0.10218748f, -0.263f);
+
+        vertices[240] = new Vector3(0f, -0.10218748f, -0.263f);
+        vertices[241] = new Vector3(0f, -0.10218748f + 0.005f, -0.263f + 0.013f);
+        vertices[242] = new Vector3(0.00925f, -0.10218748f, -0.263f);
+        vertices[243] = new Vector3(0.00925f, -0.10218748f + 0.005f, -0.263f + 0.013f);
+
+
+        // Curvy part's UV's.
+        for (int i = 196; i < 244; i++)
+        {
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
+        }
+
+        // cap
+        vertices[244] = new Vector3(0f, -0.09549998f + 0.005f, -0.263f + 0.01f);
+        vertices[245] = new Vector3(0f, -0.10218748f + 0.005f, -0.263f + 0.013f);
+        vertices[246] = new Vector3(0.00925f, -0.09549998f + 0.005f, -0.263f + 0.01f);
+        vertices[247] = new Vector3(0.00925f, -0.10218748f + 0.005f, -0.263f + 0.013f);
+
+        uvs[244] = new Vector2(vertices[244].x, vertices[244].y);
+        uvs[245] = new Vector2(vertices[245].x, vertices[245].y);
+        uvs[246] = new Vector2(vertices[246].x, vertices[246].y);
+        uvs[247] = new Vector2(vertices[247].x, vertices[247].y);
 
 
 
@@ -823,6 +932,144 @@ public class Mesh23 : MonoBehaviour
         triangles[327] = 170;
         triangles[328] = 169;
         triangles[329] = 171;
+
+
+        triangles[330] = 149 + 24;
+        triangles[331] = 148 + 24;
+        triangles[332] = 150 + 24;
+        triangles[333] = 151 + 24;
+        triangles[334] = 149 + 24;
+        triangles[335] = 150 + 24;
+
+        triangles[336] = 153 + 24;
+        triangles[337] = 152 + 24;
+        triangles[338] = 154 + 24;
+        triangles[339] = 154 + 24;
+        triangles[340] = 155 + 24;
+        triangles[341] = 153 + 24;
+
+        triangles[342] = 157 + 24;
+        triangles[343] = 156 + 24;
+        triangles[344] = 158 + 24;
+        triangles[345] = 157 + 24;
+        triangles[346] = 158 + 24;
+        triangles[347] = 159 + 24;
+
+        triangles[348] = 161 + 24;
+        triangles[349] = 160 + 24;
+        triangles[350] = 162 + 24;
+        triangles[351] = 162 + 24;
+        triangles[352] = 163 + 24;
+        triangles[353] = 161 + 24;
+
+        triangles[354] = 165 + 24;
+        triangles[355] = 164 + 24;
+        triangles[356] = 166 + 24;
+        triangles[357] = 166 + 24;
+        triangles[358] = 167 + 24;
+        triangles[359] = 165 + 24;
+
+        triangles[360] = 169 + 24;
+        triangles[361] = 168 + 24;
+        triangles[362] = 170 + 24;
+        triangles[363] = 171 + 24;
+        triangles[364] = 169 + 24;
+        triangles[365] = 170 + 24;
+
+
+        //Top of curvy part Tri's
+        triangles[366] = 168 + 24 + 4;
+        triangles[367] = 169 + 24 + 4;
+        triangles[368] = 170 + 24 + 4;
+        triangles[369] = 170 + 24 + 4;
+        triangles[370] = 169 + 24 + 4;
+        triangles[371] = 171 + 24 + 4;
+
+        triangles[372] = 168 + 24 + 8;
+        triangles[373] = 169 + 24 + 8;
+        triangles[374] = 170 + 24 + 8;
+        triangles[375] = 170 + 24 + 8;
+        triangles[376] = 169 + 24 + 8;
+        triangles[377] = 171 + 24 + 8;
+
+        triangles[378] = 168 + 24 + 12;
+        triangles[379] = 169 + 24 + 12;
+        triangles[380] = 170 + 24 + 12;
+        triangles[381] = 170 + 24 + 12;
+        triangles[382] = 169 + 24 + 12;
+        triangles[383] = 171 + 24 + 12;
+
+        triangles[384] = 168 + 24 + 16;
+        triangles[385] = 169 + 24 + 16;
+        triangles[386] = 170 + 24 + 16;
+        triangles[387] = 170 + 24 + 16;
+        triangles[388] = 169 + 24 + 16;
+        triangles[389] = 171 + 24 + 16;
+
+        triangles[390] = 168 + 24 + 20;
+        triangles[391] = 169 + 24 + 20;
+        triangles[392] = 170 + 24 + 20;
+        triangles[393] = 170 + 24 + 20;
+        triangles[394] = 169 + 24 + 20;
+        triangles[395] = 171 + 24 + 20;
+
+        triangles[396] = 168 + 24 + 24;
+        triangles[397] = 169 + 24 + 24;
+        triangles[398] = 170 + 24 + 24;
+        triangles[399] = 170 + 24 + 24;
+        triangles[400] = 169 + 24 + 24;
+        triangles[401] = 171 + 24 + 24;
+
+        // OutterPart
+        triangles[402] = 169 + 24 + 28;
+        triangles[403] = 168 + 24 + 28;
+        triangles[404] = 170 + 24 + 28;
+        triangles[405] = 171 + 24 + 28;
+        triangles[406] = 169 + 24 + 28;
+        triangles[407] = 170 + 24 + 28;
+
+        triangles[408] = 169 + 24 + 32;
+        triangles[409] = 168 + 24 + 32;
+        triangles[410] = 170 + 24 + 32;
+        triangles[411] = 171 + 24 + 32;
+        triangles[412] = 169 + 24 + 32;
+        triangles[413] = 170 + 24 + 32;
+
+        triangles[414] = 169 + 24 + 36;
+        triangles[415] = 168 + 24 + 36;
+        triangles[416] = 170 + 24 + 36;
+        triangles[417] = 171 + 24 + 36;
+        triangles[418] = 169 + 24 + 36;
+        triangles[419] = 170 + 24 + 36;
+
+        triangles[420] = 169 + 24 + 40;
+        triangles[421] = 168 + 24 + 40;
+        triangles[422] = 170 + 24 + 40;
+        triangles[423] = 171 + 24 + 40;
+        triangles[424] = 169 + 24 + 40;
+        triangles[425] = 170 + 24 + 40;
+
+        triangles[426] = 169 + 24 + 44;
+        triangles[427] = 168 + 24 + 44;
+        triangles[428] = 170 + 24 + 44;
+        triangles[429] = 171 + 24 + 44;
+        triangles[430] = 169 + 24 + 44;
+        triangles[431] = 170 + 24 + 44;
+
+        triangles[432] = 169 + 24 + 48;
+        triangles[433] = 168 + 24 + 48;
+        triangles[434] = 170 + 24 + 48;
+        triangles[435] = 171 + 24 + 48;
+        triangles[436] = 169 + 24 + 48;
+        triangles[437] = 170 + 24 + 48;
+
+
+        triangles[438] = 168 + 24 + 52;
+        triangles[439] = 169 + 24 + 52;
+        triangles[440] = 170 + 24 + 52;
+        triangles[441] = 170 + 24 + 52;
+        triangles[442] = 169 + 24 + 52;
+        triangles[443] = 171 + 24 + 52;
 
 
         for (int i = 0; i < vertices.Length; i++)

@@ -54,7 +54,7 @@ public class Mesh5 : MonoBehaviour
 
 
 
-        float moveBack = -0.05f;
+        float moveBack = -0.0675f;
 
 
         vertices[0] = new Vector3(-0.24375f, 0.02817959f, -0.9270834f);
@@ -68,6 +68,8 @@ public class Mesh5 : MonoBehaviour
         vertices[8] = new Vector3(-0.0648459f, 0.3996387f, -0.9270834f);
         vertices[9] = new Vector3(-0.04391401f, 0.3570873f, -0.9270834f);
         vertices[10] = new Vector3(-0.04143f, 0.3068946f, -0.9270834f);
+
+
 
         vertices[11] = new Vector3(0.04364002f, 0.3068946f, -0.9270834f);
         vertices[12] = new Vector3(0.04612403f, 0.3570873f, -0.9270834f);
@@ -265,16 +267,41 @@ public class Mesh5 : MonoBehaviour
         }
 
 
+        // total path length:
+        float length = 0f;
+        for (int i = 0; i< 21; i++)
+        {
+            length =  length + twoDDistance(vertices[i+1].x - vertices[i].x, vertices[i+1].y - vertices[i].y);
+        }
+        // setting uvs:
+        float dist = 0;
         for (int i = 0; i < 22; i++)
         {
-            uvs[i] = new Vector2((float)i / 22f, 0f);
+            uvs[i] = new Vector2(dist, 0f) / length;
+            dist = dist + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].y - vertices[i].y);
+            Debug.Log(dist * 100);
         }
 
+        dist = 0;
         for (int i = 0; i < 22; i++)
         {
-            uvs[i + 22] = new Vector2((float)i / 22f, 1f);
+            uvs[i + 22] = new Vector2(dist, 1f) / length;
+            dist = dist + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].y - vertices[i].y);
         }
 
+
+
+        /*
+                for (int i = 0; i < 22; i++)
+                {
+                    uvs[i] = new Vector2((float)i / 22f, 0f);
+                }
+
+                for (int i = 0; i < 22; i++)
+                {
+                    uvs[i + 22] = new Vector2((float)i / 22f, 1f);
+                }
+        */
 
 
         m.vertices = vertices;
@@ -291,4 +318,13 @@ public class Mesh5 : MonoBehaviour
 
         return go;
     }
+
+
+
+    public static float twoDDistance(float x, float y)
+    {
+        return Mathf.Sqrt(x * x + y * y);
+    }
+
+
 }

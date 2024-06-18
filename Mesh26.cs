@@ -120,10 +120,7 @@ public class Mesh26 : MonoBehaviour
         vertices[30] = new Vector3(-0.875f + 0.075f, 0.5380546f, -0.9895834f);
         vertices[31] = new Vector3(-0.32875f, 0.5380546f, -0.9895834f);
 
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            uvs[i] = new Vector2(vertices[i].x, vertices[i].y);
-        }
+
 
         triangles[0] = 2;
         triangles[1] = 1;
@@ -189,12 +186,12 @@ public class Mesh26 : MonoBehaviour
         triangles[46] = 31;
         triangles[47] = 30;
 
-
+        /*
         for (int i = 0; i < 32; i++)
         {
             uvs[i] = new Vector2(vertices[i].x, vertices[i].y);
         }
-
+        */
         uvs[12] = new Vector2(vertices[12].x, vertices[12].z);
         uvs[13] = new Vector2(vertices[13].x, vertices[13].z);
         uvs[14] = new Vector2(vertices[14].x, vertices[14].z);
@@ -211,10 +208,26 @@ public class Mesh26 : MonoBehaviour
         uvs[27] = new Vector2(vertices[27].y, vertices[27].z);
 
 
+
+
+
+
+
+
+
+
         for (int i = 0; i < vertices.Length; i++)
         {
             vertices[i] = vertices[i] * meshScale;
         }
+
+
+
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].y);
+        }
+
 
         m.vertices = vertices;
         m.triangles = triangles;

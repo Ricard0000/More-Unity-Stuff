@@ -275,6 +275,7 @@ public class TopOfPillar : MonoBehaviour
         for (int i = 0; i < vertices.Length; i++)
         {
             vertices[i] = vertices[i] * meshScale;
+            uvs[i] = uvs[i] * meshScale;
         }
 
 
