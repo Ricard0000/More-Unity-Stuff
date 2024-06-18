@@ -78,18 +78,23 @@ public class RayTracing : MonoBehaviour
         int L = 0;
         for (int i = 0; i < dimension; i++)
         {
+
+            angle = -theta * 0.5f * dimension + theta * (i + 0.5f);
+            s = Mathf.Sin(angle * 0.5f);
+            q0 = Mathf.Cos(angle * 0.5f);
+            q1 = rotAxis1[0] * s;
+            q2 = rotAxis1[1] * s;
+            q3 = rotAxis1[2] * s;
+
+            x = (1f - 2f * q2 * q2 - 2f * q3 * q3) * v2[0] + (2f * q1 * q2 - 2f * q0 * q3) * v2[1] + (2f * q1 * q3 + 2f * q0 * q2) * v2[2];
+            y = (2f * q1 * q2 + 2f * q0 * q3) * v2[0] + (1f - 2f * q1 * q1 - 2f * q3 * q3) * v2[1] + (2f * q2 * q3 - 2f * q0 * q1) * v2[2];
+            z = (2f * q1 * q3 - 2f * q0 * q2) * v2[0] + (2f * q2 * q3 + 2f * q0 * q1) * v2[1] + (1f - 2f * q1 * q1 - 2f * q2 * q2) * v2[2];
+
+
+
             for (int j = 0; j < dimension; j++)
             {
-                angle = -theta * 0.5f * dimension + theta * (i + 0.5f);
-                s = Mathf.Sin(angle * 0.5f);
-                q0 = Mathf.Cos(angle * 0.5f);
-                q1 = rotAxis1[0] * s;
-                q2 = rotAxis1[1] * s;
-                q3 = rotAxis1[2] * s;
 
-                x = (1f - 2f * q2 * q2 - 2f * q3 * q3) * v2[0] + (2f * q1 * q2 - 2f * q0 * q3) * v2[1] + (2f * q1 * q3 + 2f * q0 * q2) * v2[2];
-                y = (2f * q1 * q2 + 2f * q0 * q3) * v2[0] + (1f - 2f * q1 * q1 - 2f * q3 * q3) * v2[1] + (2f * q2 * q3 - 2f * q0 * q1) * v2[2];
-                z = (2f * q1 * q3 - 2f * q0 * q2) * v2[0] + (2f * q2 * q3 + 2f * q0 * q1) * v2[1] + (1f - 2f * q1 * q1 - 2f * q2 * q2) * v2[2];
 
                 angle = -theta * 0.5f * dimension + theta * (j + 0.5f);
                 s = Mathf.Sin(angle * 0.5f);
@@ -290,12 +295,12 @@ public class RayTracing : MonoBehaviour
         // Construct Verts
         for (int i = 0; i < dimension * dimension; i++)
         {
-            if (points[i] != Vector3.zero)
-            {
+//            if (points[i] != Vector3.zero)
+ //           {
                 int i4 = 4 * i;
                 r = (points[i] - origin).magnitude;
                 //                basis1 = CrossProduct(points[i] - origin, normals[i]);
-                basis1 = new Vector3(normals[i].z, 0f, -normals[i].x);
+                basis1 = new Vector3(normals[i].z, normals[i].z, -normals[i].x - normals[i].y);
                 basis1.Normalize();
                 basis2 = CrossProduct(normals[i], basis1);
                 normalizedScale = FOV / ((float)dimension * 2f * Mathf.PI) * r;
@@ -310,13 +315,8 @@ public class RayTracing : MonoBehaviour
                 vertices[2 + i4] = points[i] + dir3 * normalizedScale * scale;
                 vertices[3 + i4] = points[i] + dir4 * normalizedScale * scale;
 
-                /*
-                vertices[i4] = points[i] + dir1 * normalizedScale;
-                vertices[1 + i4] = points[i] + dir2 * normalizedScale;
-                vertices[2 + i4] = points[i] + dir3 * normalizedScale;
-                vertices[3 + i4] = points[i] + dir4 * normalizedScale;
-                */
-            }
+//            }
+/*
             else
             {
                 vertices[0 + 4 * i] = new Vector3(0f, 0f, 0f);
@@ -324,6 +324,7 @@ public class RayTracing : MonoBehaviour
                 vertices[2 + 4 * i] = new Vector3(0f, 0f, 0f);
                 vertices[3 + 4 * i] = new Vector3(0f, 0f, 0f);
             }
+*/
         }
         
         for (int i = 0; i < dimension * dimension; i++)
