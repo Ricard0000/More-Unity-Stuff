@@ -87,7 +87,7 @@ public class Mesh24 : MonoBehaviour
 
 
 
-
+        /*
         uvs[0] = new Vector2(0.003662168f, -0.4270834f);
         uvs[1] = new Vector2(0.003662168f, -0.9270833f);
         uvs[2] = new Vector2(-0.02758783f, -0.9270833f);
@@ -96,13 +96,23 @@ public class Mesh24 : MonoBehaviour
         uvs[5] = new Vector2(-0.875f, -0.5520834f);
         uvs[6] = new Vector2(-0.9375f, -0.8020833f);
         uvs[7] = new Vector2(-0.9375f, -0.5520834f);
-
+*/
 
 
         for (int i = 0; i < vertices.Length; i++)
         {
             vertices[i] = vertices[i] * meshScale;
         }
+
+        uvs[0] = new Vector2(vertices[0].y, vertices[0].z) / meshScale;
+        uvs[1] = new Vector2(vertices[1].y, vertices[1].z) / meshScale;
+        uvs[2] = new Vector2(vertices[2].y, vertices[2].z) / meshScale;
+        uvs[3] = new Vector2(vertices[3].y, vertices[3].z) / meshScale;
+
+        uvs[4] = new Vector2(vertices[4].x, vertices[4].z) / meshScale;
+        uvs[5] = new Vector2(vertices[5].x, vertices[5].z) / meshScale;
+        uvs[6] = new Vector2(vertices[6].x, vertices[6].z) / meshScale;
+        uvs[7] = new Vector2(vertices[7].x, vertices[7].z) / meshScale;
 
 
 

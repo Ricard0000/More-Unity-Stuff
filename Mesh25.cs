@@ -71,23 +71,35 @@ public class Mesh25 : MonoBehaviour
         triangles[11] = 6;
 
 
-        uvs[0] = new Vector2(-0.02758783f, -0.4270834f);
-        uvs[1] = new Vector2(-0.02758783f, -0.9270833f);
-        uvs[2] = new Vector2(-0.02758783f, -0.9270833f);
-        uvs[3] = new Vector2(-0.02758783f, -0.4270834f);
-        uvs[4] = new Vector2(-0.84375f, -0.9270833f);
-        uvs[5] = new Vector2(-0.84375f, -0.4270834f);
-        uvs[6] = new Vector2(-0.84375f, -0.9270833f);
-        uvs[7] = new Vector2(-0.84375f, -0.4270834f);
-
-
-
 
 
         for (int i = 0; i < vertices.Length; i++)
         {
             vertices[i] = vertices[i] * meshScale;
         }
+
+        /*
+        uvs[0] = new Vector2(vertices[0].x, vertices[0].z) / 2f;
+        uvs[1] = new Vector2(vertices[1].x, vertices[1].z) / 2f;
+        uvs[2] = new Vector2(vertices[2].x, vertices[2].z) / 2f;
+        uvs[3] = new Vector2(vertices[3].x, vertices[3].z) / 2f;
+
+        uvs[4] = new Vector2(vertices[4].y, vertices[4].z) / 2f;
+        uvs[5] = new Vector2(vertices[5].y, vertices[5].z) / 2f;
+        uvs[6] = new Vector2(vertices[6].y, vertices[6].z) / 2f;
+        uvs[7] = new Vector2(vertices[7].y, vertices[7].z) / 2f;
+        */
+
+        uvs[0] = new Vector2(vertices[0].z, vertices[0].x) / 2f;
+        uvs[1] = new Vector2(vertices[1].z, vertices[1].x) / 2f;
+        uvs[2] = new Vector2(vertices[2].z, vertices[2].x) / 2f;
+        uvs[3] = new Vector2(vertices[3].z, vertices[3].x) / 2f;
+
+        uvs[4] = new Vector2(vertices[4].z, vertices[4].y) / 2f;
+        uvs[5] = new Vector2(vertices[5].z, vertices[5].y) / 2f;
+        uvs[6] = new Vector2(vertices[6].z, vertices[6].y) / 2f;
+        uvs[7] = new Vector2(vertices[7].z, vertices[7].y) / 2f;
+
 
 
         m.vertices = vertices;

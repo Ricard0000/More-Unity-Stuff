@@ -81,12 +81,13 @@ public class Mesh4 : MonoBehaviour
         vertices[8] = new Vector3(-0.3229013f - 0.04f, 0.3619996f, -0.9270834f);
         vertices[9] = new Vector3(-0.30625f - 0.04f, 0.2783045f, -0.9270834f);
         vertices[10] = new Vector3(-0.30625f - 0.04f, -0.2816955f, -0.9270834f);
+
         vertices[11] = new Vector3(-0.74375f - 0.02f, -0.2816955f, -0.9895834f);
         vertices[12] = new Vector3(-0.74375f - 0.02f, 0.2783045f, -0.9895834f);
         vertices[13] = new Vector3(-0.7270986f - 0.02f, 0.3619995f, -0.9895834f);
         vertices[14] = new Vector3(-0.6796796f - 0.02f, 0.4393734f, -0.9895834f);
         vertices[15] = new Vector3(-0.608712f - 0.02f, 0.4999052f, -0.9895834f);
-        vertices[16] = new Vector3(-0.525f - 0.04f, 0.53802f, -0.9895834f);
+        vertices[16] = new Vector3(-0.525f - 0.02f, 0.53802f, -0.9895834f);
         vertices[17] = new Vector3(-0.441288f - 0.04f, 0.4999053f, -0.9895834f);
         vertices[18] = new Vector3(-0.3703204f - 0.04f, 0.4393734f, -0.9895834f);
         vertices[19] = new Vector3(-0.3229013f - 0.04f, 0.3619996f, -0.9895834f);
@@ -188,7 +189,7 @@ public class Mesh4 : MonoBehaviour
 
 
 
-
+        /*
         uvs[0] = new Vector2(-0.74375f, -0.2816955f);
         uvs[1] = new Vector2(-0.74375f, 0.2783045f);
         uvs[2] = new Vector2(-0.7270986f, 0.3619995f);
@@ -211,6 +212,10 @@ public class Mesh4 : MonoBehaviour
         uvs[19] = new Vector2(-0.3229013f, 0.3619996f);
         uvs[20] = new Vector2(-0.30625f, 0.2783045f);
         uvs[21] = new Vector2(-0.30625f, -0.2816955f);
+*/
+
+
+
 
 
 
@@ -219,9 +224,23 @@ public class Mesh4 : MonoBehaviour
             vertices[i] = vertices[i] * meshScale;
         }
 
-
-
-
+        float length = 0f;
+        for (int i = 0; i < 11; i++)
+        {
+            length = length + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].y - vertices[i].y);
+        }
+        float dist = 0;
+        for (int i = 0; i < 11; i++)
+        {
+            uvs[i] = new Vector2(dist, 0f) / length;
+            dist = dist + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].y - vertices[i].y);
+        }
+        dist = 0;
+        for (int i = 0; i < 11; i++)
+        {
+            uvs[i + 11] = new Vector2(dist, 1f) / length;
+            dist = dist + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].y - vertices[i].y);
+        }
 
         m.vertices = vertices;
         m.triangles = triangles;
@@ -237,4 +256,17 @@ public class Mesh4 : MonoBehaviour
 
         return go;
     }
+
+
+
+
+
+    public static float twoDDistance(float x, float y)
+    {
+        return Mathf.Sqrt(x * x + y * y);
+    }
+
+
+
+
 }

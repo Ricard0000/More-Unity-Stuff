@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class Mesh5 : MonoBehaviour
+public class Mesh42 : MonoBehaviour
 {
 
     Mesh mesh;
@@ -47,30 +47,125 @@ public class Mesh5 : MonoBehaviour
 
         Mesh m = new Mesh();
 
-        vertices = new Vector3[44];
-        triangles = new int[126];
-        uvs = new Vector2[44];
+        vertices = new Vector3[13 * 6 * 2];
+
+        triangles = new int[252 * 3];
+        uvs = new Vector2[13 * 6 * 2];
         float meshScale = 4f;
 
 
 
         float moveBack = -0.0675f;
 
-
-        vertices[0] = new Vector3(-0.24375f, 0.02817959f, -0.9270834f);
-        vertices[1] = new Vector3(-0.24375f, 0.3068946f, -0.9270834f);
-        vertices[2] = new Vector3(-0.241266f, 0.3570874f, -0.9270834f);
-        vertices[3] = new Vector3(-0.2203341f, 0.3996387f, -0.9270834f);
-        vertices[4] = new Vector3(-0.1852827f, 0.4280706f, -0.9270834f);
-        vertices[5] = new Vector3(-0.14259f, 0.4380546f, -0.9270834f);
-        vertices[6] = new Vector3(-0.14259f, 0.4380546f, -0.9270834f);
-        vertices[7] = new Vector3(-0.0998973f, 0.4280706f, -0.9270834f);
-        vertices[8] = new Vector3(-0.0648459f, 0.3996387f, -0.9270834f);
-        vertices[9] = new Vector3(-0.04391401f, 0.3570873f, -0.9270834f);
-        vertices[10] = new Vector3(-0.04143f, 0.3068946f, -0.9270834f);
+        Vector3 recenter1 = new Vector3(0.14259f, -0.233117095f, 0f);
 
 
 
+
+        vertices[0] = new Vector3(-0.24375f, 0.02817959f, 0f) + recenter1;
+        vertices[1] = new Vector3(-0.24375f, 0.3068946f, 0f) + recenter1;
+        vertices[2] = new Vector3(-0.241266f, 0.3570874f, 0f) + recenter1;
+        vertices[3] = new Vector3(-0.2203341f, 0.3996387f, 0f) + recenter1;
+        vertices[4] = new Vector3(-0.1852827f, 0.4280706f, 0f) + recenter1;
+        vertices[5] = new Vector3(-0.14259f, 0.4380546f, 0f) + recenter1;
+        vertices[6] = new Vector3(-0.14259f, 0.4380546f, 0f) + recenter1;
+        vertices[7] = new Vector3(-0.0998973f, 0.4280706f, 0f) + recenter1;
+        vertices[8] = new Vector3(-0.0648459f, 0.3996387f, 0f) + recenter1;
+        vertices[9] = new Vector3(-0.04391401f, 0.3570873f, 0f) + recenter1;
+        vertices[10] = new Vector3(-0.04143f, 0.3068946f, 0f) + recenter1;
+        vertices[11] = new Vector3(-0.04143f, 0.02817959f, 0f) + recenter1;
+        vertices[12] = new Vector3(-0.24375f, 0.02817959f, 0f) + recenter1;
+
+
+        float scale1 = 1.25f;
+        for (int i = 0; i < 13; i++)
+        {
+            vertices[i] = vertices[i] * scale1;
+        }
+
+
+        float scale2 = 0.8f;
+        for(int i = 0; i < 13; i++)
+        {
+            vertices[i+13] = vertices[i] * scale2 / scale1;
+        }
+
+        for (int i = 0; i < 13; i++)
+        {
+            vertices[i + 26] = vertices[i] + new Vector3(0f,0f,-0.025f);
+        }
+
+        for (int i = 0; i < 13; i++)
+        {
+            vertices[i + 39] = vertices[i + 13] + new Vector3(0f, 0f, -0.025f);
+        }
+
+
+        for (int i = 0; i < 13; i++)
+        {
+            vertices[i + 39 + 13] = vertices[i + 13];
+        }
+
+
+        for (int i = 0; i < 13; i++)
+        {
+            vertices[i + 39 + 26] = vertices[i + 39];
+        }
+
+
+
+
+
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            vertices[i] = vertices[i] * meshScale + new Vector3(-0.574f,0.992f,-3.933f);
+        }
+
+        for (int i = 0; i < 13; i++)
+        {
+            triangles[0 + i * 6] = 1 + i;
+            triangles[1 + i * 6] = 0 + i;
+            triangles[2 + i * 6] = 13 + i;
+            triangles[3 + i * 6] = 1 + i;
+            triangles[4 + i * 6] = 13 + i;
+            triangles[5 + i * 6] = 14 + i;
+        }
+
+
+
+
+
+        for (int i = 0; i < 13; i++)
+        {
+            triangles[0 + i * 6 + 6 * 14] = 0 + i + 26;
+            triangles[1 + i * 6 + 6 * 14] = 1 + i + 26;
+            triangles[2 + i * 6 + 6 * 14] = 13 + i + 26;
+            triangles[3 + i * 6 + 6 * 14] = 1 + i + 26;
+            triangles[4 + i * 6 + 6 * 14] = 14 + i + 26;
+            triangles[5 + i * 6 + 6 * 14] = 13 + i + 26;
+        }
+
+
+        for (int i = 0; i < 13; i++)
+        {
+            triangles[0 + i * 6 + 6 * 28] = 1 + i + 26 * 2;
+            triangles[1 + i * 6 + 6 * 28] = 0 + i + 26 * 2;
+            triangles[2 + i * 6 + 6 * 28] = 13 + i + 26 * 2;
+            triangles[3 + i * 6 + 6 * 28] = 1 + i + 26 * 2;
+            triangles[4 + i * 6 + 6 * 28] = 13 + i + 26 * 2;
+            triangles[5 + i * 6 + 6 * 28] = 14 + i + 26 * 2;
+        }
+
+
+        for (int i = 0; i < 13 * 8; i++)
+        {
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].y);
+        }
+
+
+
+
+        /*
         vertices[11] = new Vector3(0.04364002f, 0.3068946f, -0.9270834f);
         vertices[12] = new Vector3(0.04612403f, 0.3570873f, -0.9270834f);
         vertices[13] = new Vector3(0.06705593f, 0.3996387f, -0.9270834f);
@@ -82,8 +177,9 @@ public class Mesh5 : MonoBehaviour
         vertices[19] = new Vector3(0.24596f, 0.3068946f, -0.9270834f);
         vertices[20] = new Vector3(0.24596f, 0.02817959f, -0.9270834f);
         vertices[21] = new Vector3(-0.24375f, 0.02817959f, -0.9270834f);
+*/
 
-
+        /*
         vertices[22] = new Vector3(-0.24375f, 0.02817959f, -0.9270834f + moveBack);
         vertices[23] = new Vector3(-0.24375f, 0.3068946f, -0.9270834f + moveBack);
         vertices[24] = new Vector3(-0.241266f, 0.3570874f, -0.9270834f + moveBack);
@@ -95,7 +191,9 @@ public class Mesh5 : MonoBehaviour
         vertices[30] = new Vector3(-0.0648459f, 0.3996387f, -0.9270834f + moveBack);
         vertices[31] = new Vector3(-0.04391401f, 0.3570873f, -0.9270834f + moveBack);
         vertices[32] = new Vector3(-0.04143f, 0.3068946f, -0.9270834f + moveBack);
+*/
 
+        /*
         vertices[33] = new Vector3(0.04364002f, 0.3068946f, -0.9270834f + moveBack);
         vertices[34] = new Vector3(0.04612403f, 0.3570873f, -0.9270834f + moveBack);
         vertices[35] = new Vector3(0.06705593f, 0.3996387f, -0.9270834f + moveBack);
@@ -107,17 +205,12 @@ public class Mesh5 : MonoBehaviour
         vertices[41] = new Vector3(0.24596f, 0.3068946f, -0.9270834f + moveBack);
         vertices[42] = new Vector3(0.24596f, 0.02817959f, -0.9270834f + moveBack);
         vertices[43] = new Vector3(-0.24375f, 0.02817959f, -0.9270834f + moveBack);
+        */
 
 
 
 
-        triangles[0] = 1;
-        triangles[1] = 0;
-        triangles[2] = 22;
-        triangles[3] = 23;
-        triangles[4] = 1;
-        triangles[5] = 22;
-
+        /*
         triangles[6] = 1 + 1;
         triangles[7] = 0 + 1;
         triangles[8] = 22 + 1;
@@ -257,21 +350,16 @@ public class Mesh5 : MonoBehaviour
         triangles[123] = 23 + 20;
         triangles[124] = 1 + 20;
         triangles[125] = 22 + 20;
+        */
 
 
-
-
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            vertices[i] = vertices[i] * meshScale;
-        }
-
+        /*
 
         // total path length:
         float length = 0f;
-        for (int i = 0; i< 21; i++)
+        for (int i = 0; i < 21; i++)
         {
-            length =  length + twoDDistance(vertices[i+1].x - vertices[i].x, vertices[i+1].y - vertices[i].y);
+            length = length + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].y - vertices[i].y);
         }
         // setting uvs:
         float dist = 0;
@@ -279,6 +367,7 @@ public class Mesh5 : MonoBehaviour
         {
             uvs[i] = new Vector2(dist, 0f) / length;
             dist = dist + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].y - vertices[i].y);
+            Debug.Log(dist * 100);
         }
 
         dist = 0;
@@ -287,7 +376,7 @@ public class Mesh5 : MonoBehaviour
             uvs[i + 22] = new Vector2(dist, 1f) / length;
             dist = dist + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].y - vertices[i].y);
         }
-
+        */
 
 
         /*
