@@ -144,6 +144,7 @@ public class Mesh10 : MonoBehaviour
 
 
 
+
         triangles[0] = 1;
         triangles[1] = 3;
         triangles[2] = 2;
@@ -235,6 +236,84 @@ public class Mesh10 : MonoBehaviour
 
 
 
+
+
+
+
+/*
+
+        string fileName = "VertTri10.txt";
+
+        var sr = File.CreateText(fileName);
+
+        float xx;
+        float yy;
+        float zz;
+
+        for (int L = 0; L < vertices.Length; L++)
+        {
+            Vector3 pos = vertices[L];
+
+            xx = pos[0];
+            yy = pos[1];
+            zz = pos[2];
+            sr.Write("vertices[");
+            sr.Write((int)L);
+            sr.Write("] = new Vector3(");
+            sr.Write((float)xx);
+            sr.Write("f, ");
+            sr.Write((float)yy);
+            sr.Write("f, ");
+            sr.Write((float)zz);
+            sr.Write("f");
+            sr.Write(");\n");
+        }
+        sr.Write("\n"); sr.Write("\n"); sr.Write("\n"); sr.Write("\n"); sr.Write("\n");
+
+        
+        for (int L = 0; L < triangles.Length; L++)
+        {
+            int posTri = triangles[L];
+            sr.Write("triangles[");
+            sr.Write((int)L);
+            sr.Write("] = ");
+            sr.Write((int)posTri);
+            sr.Write(";\n");
+        }
+        sr.Write("\n"); sr.Write("\n"); sr.Write("\n"); sr.Write("\n"); sr.Write("\n");
+
+        float uv1;
+        float uv2;
+        Vector2 posUV;
+        for (int L = 0; L < uvs.Length; L++)
+        {
+            posUV = uvs[L];
+            uv1 = posUV[0];
+            uv2 = posUV[1];
+            sr.Write("uvs[");
+            sr.Write((int)L);
+            sr.Write("] = new Vector2(");
+            sr.Write((float)uv1);
+            sr.Write("f, ");
+            sr.Write((float)uv2);
+            sr.Write("f);\n");
+        }
+        
+        sr.Close();
+        */
+
+
+
+
+
+
+
+
+
+
+
+
+//        vertices[24] = vertices[24] + new Vector3(0f, -0.25f, 0f);
 
 
 

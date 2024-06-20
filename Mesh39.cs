@@ -5,9 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class Mesh39 : MonoBehaviour
 {
-
-    public ParticleSystem system;
-
     Mesh mesh;
     Vector3[] vertices;
     Vector2[] uvs;
@@ -49,16 +46,15 @@ public class Mesh39 : MonoBehaviour
         Vector2[] uvs;
         int[] triangles;
 
-
-        float meshScale = 4f;
         Mesh m = new Mesh();
-
         //N=number of splits per quarter.
 
         vertices = new Vector3[36];
         triangles = new int[17 * 6];
         uvs = new Vector2[36];
 
+
+        /*
         vertices[0] = new Vector3(0.5781251f, 0.1581796f, -0.8270834f);
         vertices[1] = new Vector3(0.5781251f, 0.4039859f, -0.8270834f);
         vertices[2] = new Vector3(0.5814942f, 0.4450015f, -0.8223959f);
@@ -86,32 +82,59 @@ public class Mesh39 : MonoBehaviour
         vertices[21] = new Vector3(0.6825684f + moveBackX, 0.4450015f, -0.6817709f + moveBackZ);
         vertices[22] = new Vector3(0.6859375f + moveBackX, 0.4039859f, -0.6770834f + moveBackZ);
         vertices[23] = new Vector3(0.6859375f + moveBackX, 0.1581796f, -0.6770834f + moveBackZ);
+*/
+//        vertices[13] = new Vector3(2.54375f, 1.615944f, -2.708333f);
+
+        vertices[0] = new Vector3(1.992501f, 1.615944f, -3.308334f);
+        vertices[1] = new Vector3(2.009727f, 1.780006f, -3.289584f);
+        vertices[2] = new Vector3(2.061407f, 1.897194f, -3.233334f);
+        vertices[3] = new Vector3(2.147539f, 1.967506f, -3.139584f);
+        vertices[4] = new Vector3(2.268125f, 1.990944f, -3.008334f);
+        vertices[5] = new Vector3(2.268125f, 1.990944f, -3.008334f);
+        vertices[6] = new Vector3(2.388711f, 1.967506f, -2.877084f);
+        vertices[7] = new Vector3(2.474844f, 1.897194f, -2.783334f);
+        vertices[8] = new Vector3(2.526523f, 1.780006f, -2.727084f);
+        vertices[9] = new Vector3(2.54375f, 1.615944f, -2.708333f);
 
 
+        vertices[10] = new Vector3(1.992501f, 1.615944f, -3.308334f) + new Vector3(0.25f,0f, -0.25f);
+        vertices[11] = new Vector3(2.009727f, 1.780006f, -3.289584f) + new Vector3(0.25f, 0f, -0.25f);
+        vertices[12] = new Vector3(2.061407f, 1.897194f, -3.233334f) + new Vector3(0.25f, 0f, -0.25f);
+        vertices[13] = new Vector3(2.147539f, 1.967506f, -3.139584f) + new Vector3(0.25f, 0f, -0.25f);
+        vertices[14] = new Vector3(2.268125f, 1.990944f, -3.008334f) + new Vector3(0.25f, 0f, -0.25f);
+        vertices[15] = new Vector3(2.268125f, 1.990944f, -3.008334f) + new Vector3(0.25f, 0f, -0.25f);
+        vertices[16] = new Vector3(2.388711f, 1.967506f, -2.877084f) + new Vector3(0.25f, 0f, -0.25f);
+        vertices[17] = new Vector3(2.474844f, 1.897194f, -2.783334f) + new Vector3(0.25f, 0f, -0.25f);
+        vertices[18] = new Vector3(2.526523f, 1.780006f, -2.727084f) + new Vector3(0.25f, 0f, -0.25f);
+        vertices[19] = new Vector3(2.54375f, 1.615944f, -2.708333f) + new Vector3(0.25f, 0f, -0.25f);
 
-        for (int i = 0; i < vertices.Length; i++)
+        //        vertices[19] = new Vector3(1.992501f, 1.615944f, -3.308334f);
+
+
+        for(int i = 0; i < 9; i++)
         {
-            vertices[i] = vertices[i] * meshScale;
+            triangles[3 * i] = 1 + i;
+            triangles[3 * i + 1] = 0 + i;
+            triangles[3 * i + 2] = 10 + i;
         }
 
-        for (int i = 0; i < 11; i++)
+        int nextTri = 27;
+        for (int i = 0; i < 9; i++)
         {
-            int i3 = 3 * i;
-            triangles[i3 + 0] = i + 1;
-            triangles[i3 + 1] = i;
-            triangles[i3 + 2] = 12 + i;
+            triangles[3 * i + nextTri] = 1 + i;
+            triangles[3 * i + 1 + nextTri] = 10 + i;
+            triangles[3 * i + 2 + nextTri] = 11 + i;
         }
 
-        int nextTri = 11 * 3;
-        for (int i = 0; i < 11; i++)
-        {
-            int i3 = 3 * i;
-            triangles[nextTri + i3 + 0] = 12 + i;
-            triangles[nextTri + i3 + 1] = 12 + i + 1;
-            triangles[nextTri + i3 + 2] = i + 1;
-        }
 
- 
+
+
+
+
+
+
+
+
 
         m.vertices = vertices;
         m.triangles = triangles;

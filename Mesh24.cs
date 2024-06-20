@@ -64,8 +64,8 @@ public class Mesh24 : MonoBehaviour
         vertices[3] = new Vector3(-0.875f, -0.02758783f, -0.4270834f);
         vertices[4] = new Vector3(-0.875f, 0.003662168f, -0.8020833f);
         vertices[5] = new Vector3(-0.875f, 0.003662168f, -0.5520834f);
-        vertices[6] = new Vector3(-0.9375f, 0.003662168f, -0.8020833f);
-        vertices[7] = new Vector3(-0.9375f, 0.003662168f, -0.5520834f);
+        vertices[6] = new Vector3(-0.9375f, 0.003662168f, -0.8020833f) + new Vector3(0f, 0.0625f, 0f);
+        vertices[7] = new Vector3(-0.9375f, 0.003662168f, -0.5520834f) + new Vector3(0f, 0.0625f, 0f);
 
 
 
