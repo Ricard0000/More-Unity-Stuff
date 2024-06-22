@@ -133,31 +133,38 @@ public class ArchSideWall : MonoBehaviour
 
 
 
-
+        //Top Right side
         vertices[0] = new Vector3(-1.5f, 0.004008672f, -0.0625f);
         vertices[1] = new Vector3(-1.5f, 0.004008672f, 0.03125f);
         vertices[2] = new Vector3(-1.25f, 0.004008672f, 0.03125f);
         vertices[3] = new Vector3(-0.78f, 0.003613972f, -0.2395833f);
         vertices[4] = new Vector3(-0.78f, 0.003613972f, -0.4270833f);
-        vertices[5] = new Vector3(-0.90625f, 0.003693585f, -0.4270833f);
+        vertices[5] = new Vector3(-0.90625f, 0.003693585f, -0.4270833f);        
+
+        // Other side Top
         vertices[6] = new Vector3(1.5f, 0.004008672f, -0.0625f);
         vertices[7] = new Vector3(1.5f, 0.004008672f, 0.03125f);
         vertices[8] = new Vector3(1.25f, 0.004008672f, 0.03125f);
         vertices[9] = new Vector3(0.78f, 0.003613972f, -0.2395833f);
         vertices[10] = new Vector3(0.78f, 0.003613972f, -0.4270833f);
         vertices[11] = new Vector3(0.90625f, 0.003693585f, -0.4270833f);
+
+
+        // Bottom Right side
         vertices[12] = new Vector3(-1.5f, -0.6209913f, -0.0625f);
         vertices[13] = new Vector3(-1.5f, -0.6209913f, 0.03125f);
         vertices[14] = new Vector3(-1.25f, -0.6209913f, 0.03125f);
         vertices[15] = new Vector3(-0.78f, -0.6213861f, -0.2395833f);
         vertices[16] = new Vector3(-0.78f, -0.6213861f, -0.4270833f);
-        vertices[17] = new Vector3(-0.90625f, -0.6213064f, -0.4270833f);
+        vertices[17] = new Vector3(-0.90625f, -0.6213064f, -0.4270833f) + new Vector3(0f, 0f, -0.00125f);
+
+        // Other side Bottom
         vertices[18] = new Vector3(1.5f, -0.6209913f, -0.0625f);
         vertices[19] = new Vector3(1.5f, -0.6209913f, 0.03125f);
         vertices[20] = new Vector3(1.25f, -0.6209913f, 0.03125f);
         vertices[21] = new Vector3(0.78f, -0.6213861f, -0.2395833f);
         vertices[22] = new Vector3(0.78f, -0.6213861f, -0.4270833f);
-        vertices[23] = new Vector3(0.90625f, -0.6213064f, -0.4270833f);
+        vertices[23] = new Vector3(0.90625f, -0.6213064f, -0.4270833f) + new Vector3(0f,0f,-0.00125f);
 
         triangles[0] = 0;
         triangles[1] = 12;
@@ -220,6 +227,65 @@ public class ArchSideWall : MonoBehaviour
         triangles[58] = 11;
         triangles[59] = 23;
 
+
+
+
+
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            vertices[i] = vertices[i] * meshScale;
+        }
+
+
+
+
+
+        // total path length:
+        float length = 0f;
+        for (int i = 0; i < 6; i++)
+        {
+            length = length + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].z - vertices[i].z);
+        }
+        // setting uvs for Right side:
+        float dist = 0;
+        for (int i = 0; i < 6; i++)
+        {
+            uvs[i] = new Vector2(dist, 0f) / length;
+            dist = dist + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].z - vertices[i].z);
+        }
+
+        dist = 0;
+        for (int i = 0; i < 6; i++)
+        {
+            uvs[i + 12] = new Vector2(dist, 1f) / length;
+            dist = dist + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].z - vertices[i].z);
+        }
+
+
+        // setting uvs for Left side:
+        dist = 0;
+        for (int i = 0; i < 6; i++)
+        {
+            uvs[i + 6] = new Vector2(dist, 0f) / length;
+            dist = dist + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].z - vertices[i].z);
+        }
+
+        dist = 0;
+        for (int i = 0; i < 6; i++)
+        {
+            uvs[i + 18] = new Vector2(dist, 1f) / length;
+            dist = dist + twoDDistance(vertices[i + 1].x - vertices[i].x, vertices[i + 1].z - vertices[i].z);
+        }
+
+
+
+
+
+
+
+
+
+        /*
         uvs[0] = new Vector2(0f, 0f);
         uvs[1] = new Vector2(0.05f, 0f);
         uvs[2] = new Vector2(0.15f, 0f);
@@ -244,18 +310,7 @@ public class ArchSideWall : MonoBehaviour
         uvs[21] = new Vector2(0.75f, 0.999999f);
         uvs[22] = new Vector2(0.9f, 0.999999f);
         uvs[23] = new Vector2(1f, 0.999999f);
-
-
-
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            vertices[i] = vertices[i] * meshScale;
-        }
-
-
-
-
-
+*/
 
         m.vertices = vertices;
         m.triangles = triangles;
@@ -271,6 +326,14 @@ public class ArchSideWall : MonoBehaviour
 
         return go;
     }
+
+
+
+    public static float twoDDistance(float x, float z)
+    {
+        return Mathf.Sqrt(x * x + z * z);
+    }
+
 
 }
 

@@ -105,15 +105,16 @@ public class BottomMainArch : MonoBehaviour
         triangles[22] = 9;
         triangles[23] = 11;
 
-        for (int i = 0; i < 12; i++)
-        {
-            uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
-        }
 
 
         for (int i = 0; i < vertices.Length; i++)
         {
             vertices[i] = vertices[i] * meshScale;
+        }
+
+        for (int i = 0; i < 12; i++)
+        {
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
         }
 
         /*
